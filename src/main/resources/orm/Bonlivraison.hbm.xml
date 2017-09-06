@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Bonlivraison" table="BONLIVRAISON" schema="HR">
+        <id name="numjira" column="NUMJIRA"/>
+        <property name="statut" column="STATUT"/>
+        <property name="datecreation" column="DATECREATION"/>
+        <property name="description" column="DESCRIPTION"/>
+        <property name="domaine" column="DOMAINE"/>
+        <property name="livraisonnumlivraison" column="LIVRAISONNUMLIVRAISON"/>
+        <property name="useridrh" column="USERIDRH"/>
+        <property name="pret" column="PRET"/>
+        <property name="datemodif" column="DATEMODIF"/>
+        <property name="auteurmodif" column="AUTEURMODIF"/>
+        <property name="source" column="SOURCE"/>
+    </class>
+</hibernate-mapping>
