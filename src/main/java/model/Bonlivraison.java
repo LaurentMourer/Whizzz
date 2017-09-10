@@ -1,9 +1,14 @@
 package model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Time;
 import java.sql.Timestamp;
 
 public class Bonlivraison {
+
+    @NotNull
+    @Size(min=6, max=30)
     private String numjira;
     private String statut;
     private Time datecreation;

@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;

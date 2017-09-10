@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<body>
+<form action="#" th:action="@{/creerBonLivraison}" th:object="${bonlivraison}" method="post">
+    <table>
+        <tr>
+            <td>numjira:</td>
+            <td><input type="text" th:field="*{numjira}" /></td>
+            <td th:if="${#fields.hasErrors('numjira')}" th:errors="*{numjira}">numjira Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

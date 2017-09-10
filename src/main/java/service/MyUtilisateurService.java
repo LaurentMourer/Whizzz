@@ -1,5 +1,8 @@
 package service;
 
+import controller.ErrorController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +20,8 @@ import java.util.Set;
 public class MyUtilisateurService implements UserDetailsService {
 
     private UtilisateurDao utilisateurDao;
+    private static Logger logger = LoggerFactory.getLogger(ErrorController.class);
+
 
     @Override
     public UserDetails loadUserByUsername(final String username)
@@ -30,7 +35,7 @@ public class MyUtilisateurService implements UserDetailsService {
         //userRoles.add("Developpeur");
         //userRoles.add("Developpeur-Chef");
         List<GrantedAuthority> authorities = buildUserAuthority(userRoles);
-
+        logger.info("Utilisateur" + user.getIdentifiant());
         return buildUserForAuthentication(user, authorities);
 
 
