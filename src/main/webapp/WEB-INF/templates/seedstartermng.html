@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <table>
-
+    <thead>
+    <tr>
+        <th>Redmine</th>
+        <th>Date de livraison</th>
+        <th>Domaine</th>
+        <th>Source</th>
+    </tr>
+    </thead>
+    <tbody>
     <tr th:each="sb : ${allBonLivraison}">
         <td th:text="${{sb.numjira}}">13/01/2011</td>
+        <td th:text="${{sb.datecreation}}">13/01/2011</td>
+        <td th:text="${{sb.domaine}}">13/01/2011</td>
+        <td th:text="${{sb.source}}">13/01/2011</td>
+
     </tr>
+    </tbody>
 </table>
 <span sec:authorize="isAuthenticated()">
                 | Logged user: <span sec:authentication="name"></span> |
@@ -20,5 +23,3 @@
                 <a th:href="@{/logout}">Sign Out</a>
             </span>
 
-</body>
-</html>

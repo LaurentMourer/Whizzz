@@ -1,17 +1,21 @@
 package model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Bonlivraison {
 
     @NotNull
-    @Size(min=6, max=30)
+    @Size(min = 6, max = 30)
     private String numjira;
     private String statut;
-    private Time datecreation;
+
+    private Date datecreation;
     private String description;
     private String domaine;
     private String livraisonnumlivraison;
@@ -37,11 +41,12 @@ public class Bonlivraison {
         this.statut = statut;
     }
 
-    public Time getDatecreation() {
+
+    public Date getDatecreation() {
         return datecreation;
     }
 
-    public void setDatecreation(Time datecreation) {
+    public void setDatecreation(Date datecreation) {
         this.datecreation = datecreation;
     }
 
@@ -146,5 +151,22 @@ public class Bonlivraison {
         result = 31 * result + (auteurmodif != null ? auteurmodif.hashCode() : 0);
         result = 31 * result + (source != null ? source.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Bonlivraison{" +
+                "numjira='" + numjira + '\'' +
+                ", statut='" + statut + '\'' +
+                ", datecreation=" + datecreation +
+                ", description='" + description + '\'' +
+                ", domaine='" + domaine + '\'' +
+                ", livraisonnumlivraison='" + livraisonnumlivraison + '\'' +
+                ", useridrh='" + useridrh + '\'' +
+                ", pret='" + pret + '\'' +
+                ", datemodif=" + datemodif +
+                ", auteurmodif='" + auteurmodif + '\'' +
+                ", source='" + source + '\'' +
+                '}';
     }
 }

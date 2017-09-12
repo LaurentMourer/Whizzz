@@ -1,48 +1,60 @@
 package controller;
 
 import model.Bonlivraison;
+import model.Domaine;
+import model.Environnement;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import service.BonlivraisonService;
+import service.DomaineService;
+import service.EnvironnementService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class BonlivraisonController {
+
+
     @Autowired
     private BonlivraisonService bonlivraisonService;
 
-   /* @RequestMapping(value = "/bonlivraison**", method = RequestMethod.GET)
-    public ModelAndView adminPage() {
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security + Hibernate Example");
-        model.addObject("message", "This page is for ROLE_ADMIN only!");
-        model.addObject("Bonlivraison", bonlivraisonService.getAll());
-        model.setViewName("bonlivraison");
+    @Autowired
+    private DomaineService domaineService;
 
-        return model;
+    @Autowired
+    private EnvironnementService environnementService;
 
+
+    private static final Logger logger = Logger.getLogger(BonlivraisonController.class);
+
+    public BonlivraisonController() {
+        super();
     }
 
-    public BonlivraisonService getBonlivraisonService() {
-        return bonlivraisonService;
+
+    @ModelAttribute("allBonLivraison")
+    public List<Bonlivraison> populateBonLivraison() {
+        return bonlivraisonService.getAll();
     }
 
-    public void setBonlivraisonService(BonlivraisonService bonlivraisonService) {
-        this.bonlivraisonService = bonlivraisonService;
+    @ModelAttribute("allDomaines")
+    public List<Domaine> populateDomaines() {
+        return domaineService.getAll();
     }
-    */
 
 
-
-   @ModelAttribute("allBonLivraison")
-   public List<Bonlivraison> populateTypes() {
-       return bonlivraisonService.getAll();
-   }
+    @ModelAttribute("allSources")
+    public List<Environnement> populateSources() {
+        return environnementService.getAll();
+    }
 
 
     @RequestMapping("/seedstartermng")
@@ -68,25 +80,17 @@ public class BonlivraisonController {
         return "creerBonLivraison";
     }
 
-    @PostMapping("/creerBonLivraison")
-    public String checkBonLivraisonInfo(@Valid Bonlivraison bonlivraison, BindingResult bindingResult) {
+    @PostMapping(value = "/creerBonLivraison")
+    public String checkBonLivraisonInfo(@Valid final Bonlivraison bonlivraison, final BindingResult bindingResult, final ModelMap model) {
 
         if (bindingResult.hasErrors()) {
             return "creerBonLivraison";
         }
-        return "redirect:/creerBonLivraison";
+        logger.info(bonlivraison.toString());
+        model.clear();
+        return "redirect:/seedstartermng";
 
     }
 
 
-   /* @RequestMapping(value="/seedstartermng", params={"save"})
-    public String saveSeedstarter(
-            final SeedStarter seedStarter, final BindingResult bindingResult, final ModelMap model) {
-        if (bindingResult.hasErrors()) {
-            return "seedstartermng";
-        }
-        this.seedStarterService.add(seedStarter);
-        model.clear();
-        return "redirect:/seedstartermng";
-    }*/
 }

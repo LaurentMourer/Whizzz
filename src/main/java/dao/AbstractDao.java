@@ -1,11 +1,10 @@
 package dao;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractDao<PK extends Serializable, T> {
@@ -44,14 +43,21 @@ public abstract class AbstractDao<PK extends Serializable, T> {
         getSession().delete(entity);
     }
 
-    public List getAll()
-    {
+   /* public List getAll() {
         return getSession().createCriteria(persistentClass).list();
+    }*/
+
+
+    public List getAll() {
+        List liste = new ArrayList();
+        try {
+            liste = getSession().createQuery("FROM " + persistentClass.getName()).list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return liste;
     }
-
-    protected Criteria createEntityCriteria() {
-        return getSession().createCriteria(persistentClass);
-    }
-
-
 }
+
+

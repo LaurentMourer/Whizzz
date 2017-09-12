@@ -1,19 +1,95 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
 
 <body>
-<form action="#" th:action="@{/creerBonLivraison}" th:object="${bonlivraison}" method="post">
-    <table>
-        <tr>
-            <td>numjira:</td>
-            <td><input type="text" th:field="*{numjira}" /></td>
-            <td th:if="${#fields.hasErrors('numjira')}" th:errors="*{numjira}">numjira Error</td>
-        </tr>
-        <tr>
-            <td><button type="submit">Submit</button></td>
-        </tr>
-    </table>
-</form>
+<div class="row">
+    <form class="col s12" action="#" th:action="@{/creerBonLivraison}" th:object="${bonlivraison}" method="post">
+
+        <div class="row">
+            <div class="input-field col s2">
+                <label for="numjira">Redmine</label>
+                <input id="numjira" type="text" th:field="*{numjira}"
+                       th:class="${#fields.hasErrors('numjira')}? invalid"/>
+                <div class="red-text" th:if="${#fields.hasErrors('numjira')}" th:errors="*{numjira}">numjira Error</div>
+            </div>
+            <div class="input-field col s2">
+                <i class="material-icons prefix">date_range</i>
+                <input type="text" id="datecreation" th:field="*{datecreation}" class="datepicker"/>
+                <label for="datecreation">Date de livraison</label>
+                <div class="red-text" th:if="${#fields.hasErrors('datecreation')}" th:errors="*{datecreation}">
+                    datecreation Error
+                </div>
+            </div>
+            <div class="input-field col s2">
+
+                <input type="text" id="description" th:field="*{description}"/>
+                <div class="red-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+                    description
+                    Error
+                </div>
+                <label for="description">Description</label>
+
+            </div>
+            <div class="input-field col s2">
+                <select th:field="*{domaine}">
+                    <option th:each="domaine : ${allDomaines}"
+                            th:value="${domaine.getNom()}"
+                            th:text="${domaine.getNom()}">Wireframe
+                    </option>
+                </select>
+                <label>Domaine</label>
+
+            </div>
+            <div class="input-field col s2">
+                <select th:field="*{source}">
+                    <option th:each="environnement : ${allSources}"
+                            th:value="${environnement.nomenvironnement}"
+                            th:text="${environnement.nomenvironnement}">nomenvironnement
+                    </option>
+                </select>
+                <label>Source</label>
+            </div>
+            <div class="input-field col s2">
+                <button class="btn waves-effect waves-light" type="submit">Creer
+                    <i class="material-icons right">send</i></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div th:insert="seedstartermng"></div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: false, // Close upon selecting a date,
+        format: 'dd-mm-yyyy',
+        formatSubmit: 'dd-mm-yyyy'
+
+    });
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+</script>
+
 </body>
+
+
 </html>
+

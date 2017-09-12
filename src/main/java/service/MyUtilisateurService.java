@@ -1,8 +1,8 @@
 package service;
 
 import controller.ErrorController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.log4j.Logger;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -20,15 +20,15 @@ import java.util.Set;
 public class MyUtilisateurService implements UserDetailsService {
 
     private UtilisateurDao utilisateurDao;
-    private static Logger logger = LoggerFactory.getLogger(ErrorController.class);
+    private static Logger logger = Logger.getLogger(ErrorController.class);
 
 
     @Override
     public UserDetails loadUserByUsername(final String username)
             throws UsernameNotFoundException {
-        System.out.println("id "+username);
+        System.out.println("id " + username);
         Utilisateur user = utilisateurDao.getUtilisateur(username);
-        System.out.println("id "+user.getIdentifiant());
+        System.out.println("id " + user.getIdentifiant());
 
         Set<String> userRoles = new HashSet<>();
         userRoles.add("Administrateur");
@@ -56,7 +56,7 @@ public class MyUtilisateurService implements UserDetailsService {
 
         // Build user's authorities
         for (String userRole : userRoles) {
-            setAuths.add(new SimpleGrantedAuthority("ROLE_"+userRole));
+            setAuths.add(new SimpleGrantedAuthority("ROLE_" + userRole));
         }
 
         List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
