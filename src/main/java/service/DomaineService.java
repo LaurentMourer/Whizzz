@@ -9,15 +9,15 @@ public class DomaineService {
 
     private DomaineDao domaineDao;
 
-    public void creerEnvironnement(Domaine domaine) {
+    public void creerDomaine(Domaine domaine) {
         domaineDao.persist(domaine);
     }
 
-    public void deleteBonLivraison(Domaine domaine) {
+    public void deleteDomaine(Domaine domaine) {
         domaineDao.delete(domaine);
     }
 
-    public Domaine get(String id) {
+    public Domaine getDomaine(String id) {
         return domaineDao.getByKey(id);
     }
 

@@ -15,7 +15,6 @@ import service.BonlivraisonService;
 import service.DomaineService;
 import service.EnvironnementService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -57,39 +56,42 @@ public class BonlivraisonController {
     }
 
 
-    @RequestMapping("/seedstartermng")
-    public String showSeedstarters() {
-        return "/seedstartermng";
+    @GetMapping("/listeBonLivraison")
+    public String listeBonLivraison(Bonlivraison bonlivraison) {
+        return "listeBonLivraison";
     }
 
-    // Login form
-    @RequestMapping("/login")
-    public String login() {
-        return "/login";
-    }
 
-    // Login form with error
-    @RequestMapping("/login-error")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        return "/login";
-    }
-
-    @GetMapping("/creerBonLivraison")
-    public String creerBonLivraison(Bonlivraison bonlivraison) {
-        return "creerBonLivraison";
-    }
-
-    @PostMapping(value = "/creerBonLivraison")
+    @PostMapping(value = "/listeBonLivraison")
     public String checkBonLivraisonInfo(@Valid final Bonlivraison bonlivraison, final BindingResult bindingResult, final ModelMap model) {
 
         if (bindingResult.hasErrors()) {
-            return "creerBonLivraison";
+            return "listeBonLivraison";
         }
         logger.info(bonlivraison.toString());
         model.clear();
-        return "redirect:/seedstartermng";
+        return "redirect:/listeBonLivraison";
 
+    }
+
+    @PostMapping(value = "/modifierBl")
+    public String modifierBl(@Valid final Bonlivraison bonlivraison, final BindingResult bindingResult, final ModelMap model) {
+
+        if (bindingResult.hasErrors()) {
+            return "afficherBonLivraison";
+        }
+        logger.info(bonlivraison.toString());
+        return "redirect:/listeBonLivraison";
+
+    }
+
+    @GetMapping("/afficherBonLivraison")
+    public String afficherBonLivraison(@RequestParam("id") String id, Bonlivraison bonlivraison, Model model) {
+        logger.info(id);
+        bonlivraison = bonlivraisonService.get(id);
+        logger.info(bonlivraison.toString());
+        model.addAttribute("bonlivraison", bonlivraison);
+        return "afficherBonLivraison";
     }
 
 

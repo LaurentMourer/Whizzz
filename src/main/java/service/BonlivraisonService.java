@@ -22,7 +22,6 @@ public class BonlivraisonService {
     }
 
     public List<Bonlivraison> getAll() {
-        System.out.println("slaut" + bonlivraisonDao);
         return bonlivraisonDao.getAll();
 
     }

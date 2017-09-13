@@ -13,11 +13,11 @@ public class EnvironnementService {
         environnementDao.persist(environnement);
     }
 
-    public void deleteBonLivraison(Environnement environnement) {
+    public void deleteEnvironnement(Environnement environnement) {
         environnementDao.delete(environnement);
     }
 
-    public Environnement get(String id) {
+    public Environnement getEnvironnement(String id) {
         return environnementDao.getByKey(id);
     }
 

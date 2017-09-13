@@ -32,7 +32,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 
     @SuppressWarnings("unchecked")
     public T getByKey(PK key) {
-        return (T) getSession().get(persistentClass, key);
+        return (T) getSession().get(persistentClass.getName(), key);
     }
 
     public void persist(T entity) {
@@ -42,11 +42,6 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     public void delete(T entity) {
         getSession().delete(entity);
     }
-
-   /* public List getAll() {
-        return getSession().createCriteria(persistentClass).list();
-    }*/
-
 
     public List getAll() {
         List liste = new ArrayList();

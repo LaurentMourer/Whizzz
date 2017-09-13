@@ -1,40 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
 
-    <link href="css/icon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="css/icon.css" th:href="@{/css/icon.css}"/>
+
     <!--Import Google Icon Font-->
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/materialize.min.css"
+          th:href="@{/css/materialize.min.css}"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-
 <body>
 <div th:insert="navbar"></div>
 
 <div class="row main">
-    <form class="col s12" action="#" th:action="@{/listeBonLivraison}" th:object="${bonlivraison}" method="post">
+
+    <form class="col s12" action="#" th:action="@{/modifierBl}" th:object="${bonlivraison}" method="post">
 
         <div class="row">
             <div class="input-field col s2">
                 <label for="numjira">Redmine</label>
-                <input id="numjira" name="numjira" type="text" th:value="${bonLivraison.numjira}"
+                <input id="numjira" name="numjira" type="text" th:value="${bonlivraison.numjira}"
                        th:class="${#fields.hasErrors('numjira')}? invalid"/>
                 <div class="red-text" th:if="${#fields.hasErrors('numjira')}" th:errors="*{numjira}">numjira Error
                 </div>
             </div>
             <div class="input-field col s2">
                 <i class="material-icons prefix">date_range</i>
-                <input type="text" id="datecreation" th:field="*{datecreation}" class="datepicker"/>
+                <input type="text" name="datecreation" id="datecreation" th:value="${{bonlivraison.datecreation}}"
+                       class="datepicker"/>
                 <label for="datecreation">Date de livraison</label>
 
             </div>
             <div class="input-field col s2">
 
-                <input type="text" id="description" th:field="*{description}"/>
+                <input type="text" name="description" id="description" th:value="${bonlivraison.description}"/>
                 <div class="red-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
                     description
                     Error
@@ -43,7 +47,7 @@
 
             </div>
             <div class="input-field col s2">
-                <select th:field="*{domaine}">
+                <select id="domaine" name="domaine" th:value="${bonlivraison.domaine}">
                     <option th:each="domaine : ${allDomaines}"
                             th:value="${domaine.getNom()}"
                             th:text="${domaine.getNom()}">Wireframe
@@ -53,7 +57,7 @@
 
             </div>
             <div class="input-field col s2">
-                <select th:field="*{source}">
+                <select id="source" option="source" th:value="${bonlivraison.source}">
                     <option th:each="environnement : ${allSources}"
                             th:value="${environnement.nomenvironnement}"
                             th:text="${environnement.nomenvironnement}">nomenvironnement
@@ -63,11 +67,11 @@
             </div>
             <div class="input-field col s1">
                 <label for="pret">pret</label>
-                <input type="text" id="pret" th:field="*{pret}">
+                <input type="text" name="pret" id="pret" th:value="${bonlivraison.pret}">
 
             </div>
             <div class="input-field col s1">
-                <button class="btn waves-effect waves-light" type="submit">Creer
+                <button class="btn waves-effect waves-light" type="submit">Modifier
                     <i class="material-icons right">send</i></button>
             </div>
         </div>
@@ -94,6 +98,4 @@
         $('select').material_select();
     });
 </script>
-
 </html>
-
