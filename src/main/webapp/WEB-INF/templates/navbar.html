@@ -2,7 +2,8 @@
     .wrapper {
         padding-left: 300px;
     }
-    .main{
+
+    .main {
         padding-left: 300px;
     }
 </style>
@@ -11,19 +12,24 @@
     <div class="">
         <!-- Dropdown Structure -->
         <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">User Profile</a></li>
-            <li><a href="#!">Settings</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Logout</a></li>
+            <li></li>
+            <li><
+            <li><a th:href="@{/logout}">Logout</a></li>
         </ul>
 
         <nav class="light-blue lighten-1" role="navigation">
             <div class="nav-wrapper container">
-                <a href="#!" class="brand-logo">Point of Sale</a>
-                <ul class="right hide-on-med-and-down">
-                    <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Profile<i
-                            class="material-icons right">arrow_drop_down</i></a></li>
+                <a href="#!" class="brand-logo">Super Whizzz</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a sec:authentication="name">Bob</a></li>
+                    <li><a sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</a></li>
+                    <li>
+                        <form th:action="@{/logout}" method="post">
+                            <button class="btn waves-effect waves-light" value="Log out" type="submit" name="action">
+                                Se deconnecter
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -32,6 +38,6 @@
 </div>
 
 <ul id="slide-out" class="side-nav fixed">
-    <li><a th:href="@{/listeBonLivraison}"><span>Delete</span></a></li>
+    <li><a th:href="@{/listeBonLivraison}"><span>Bon de livraison</span></a></li>
     <li><a href="#!">Second Sidebar Link</a></li>
 </ul>

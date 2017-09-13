@@ -6,13 +6,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/icon.css" rel="stylesheet">
-    <!--Import Google Icon Font-->
-    <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
-
-    <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 </head>
 <body>
 <div th:insert="navbar"></div>
@@ -99,7 +94,7 @@
                 <td th:text="${{sb.domaine}}">13/01/2011</td>
                 <td th:text="${{sb.source}}">13/01/2011</td>
                 <td>
-                    <a th:href="@{/afficherBonLivraison(id=${sb.numjira})}"><span>Delete</span></a>
+                    <a th:href="@{/afficherBonLivraison(id=${sb.numjira})}"><span>Modifier bon de livraison</span></a>
                 </td>
             </tr>
             </tbody>

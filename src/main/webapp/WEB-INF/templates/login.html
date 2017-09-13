@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-
 <head>
-    <title>Login page</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/icon.css" th:href="@{/css/icon.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/materialize.min.css"
+          th:href="@{/css/materialize.min.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<h1>Login page</h1>
-<p th:if="${loginError}" class="error">Wrong user or password</p>
-<form th:action="@{/login}" method="post">
-    <label for="username">Username</label>:
-    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-    <label for="password">Password</label>:
-    <input type="password" id="password" name="password" /> <br />
-    <input type="submit" value="Log in" />
-</form>
+<div class="container">
+    <h1>Super Whizzz</h1>
+    <p th:if="${loginError}" class="error">Wrong user or password</p>
+    <form th:action="@{/login}" method="post">
+        <div class="input-field">
+            <input type="text" id="username" name="username"/>
+            <label for="username">Username</label>
+        </div>
+        <div class="input-field">
+            <input type="password" id="password" name="password"/>
+            <label for="password">Password</label>
+        </div>
+        <div class="input-field">
 
-<form class="form-inline" th:action="@{/logout}" method="post">
-    <input type="submit" value="Log out" />
-</form>
+            <button class="btn waves-effect waves-light" value="Log in" type="submit" name="action">Se connecter
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+
+
+</div>
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
 </html>
