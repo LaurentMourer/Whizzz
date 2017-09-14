@@ -177,4 +177,24 @@ public class Entiteaction {
         result = 31 * result + (auteurmodif != null ? auteurmodif.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Entiteaction{" +
+                "identite=" + identite +
+                ", typeaction='" + typeaction + '\'' +
+                ", codeentiteac='" + codeentiteac + '\'' +
+                ", codeentitemere='" + codeentitemere + '\'' +
+                ", typeentitemere='" + typeentitemere + '\'' +
+                ", nomprocess='" + nomprocess + '\'' +
+                ", radicalprocess='" + radicalprocess + '\'' +
+                ", temoinforcage='" + temoinforcage + '\'' +
+                ", programme='" + programme + '\'' +
+                ", commentaire='" + commentaire + '\'' +
+                ", datecreation=" + datecreation +
+                ", auteur='" + auteur + '\'' +
+                ", datemodif=" + datemodif +
+                ", auteurmodif='" + auteurmodif + '\'' +
+                '}';
+    }
 }

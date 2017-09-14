@@ -15,38 +15,19 @@ public class UtilisateurDaoImpl extends AbstractDao<String, Utilisateur> impleme
         super();
     }
 
-    @Override
-    public Utilisateur getUtilisateur(String username) {
-        return super.getByKey(username);
-    }
+
+
+
+
+
+
 
 
     /*@Override
     public Utilisateur getUtilisateur(String username) {
-        Session session = getSessionFactory().getCurrentSession();
-
-        Utilisateur utilisateur = new Utilisateur();
-        try {
-            System.out.println("Try");
-            session = getSessionFactory().openSession();
-            session.beginTransaction();
-            utilisateur = session.get(Utilisateur.class, username);
-            session.getTransaction().commit();
-            session.close();
-        } catch (HibernateException e) {
-            System.out.println(e);
-            if (session.getTransaction().getStatus() == TransactionStatus.ACTIVE
-                    || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK) {
-                session.getTransaction().rollback();
-            }
-        } finally {
-
-            session.close();
-        }
-        return utilisateur;
+        return super.getByKey(username);
     }
 
-*/
     @Override
     public List<Utilisateur> getAllEntities() {
         Session session = getSessionFactory().getCurrentSession();
@@ -68,7 +49,7 @@ public class UtilisateurDaoImpl extends AbstractDao<String, Utilisateur> impleme
             session.close();
         }
         return listeUtilisateur;
-    }
+    }*/
 
 }
 

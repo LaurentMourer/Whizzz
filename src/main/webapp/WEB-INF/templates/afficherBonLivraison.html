@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head><head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/icon.css" th:href="@{/css/icon.css}"/>
-    <link rel="stylesheet" type="text/css" media="all" href="css/materialize.min.css"
-          th:href="@{/css/materialize.min.css}"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/icon.css}"/>
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
 <body>
 <div th:insert="navbar"></div>
 
@@ -17,30 +17,33 @@
     <form class="col s12" action="#" th:action="@{/modifierBl}" th:object="${bonlivraison}" method="post">
 
         <div class="row">
-            <div class="input-field col s2">
-                <label for="numjira">Redmine</label>
+            <div class="input-field col s6">
                 <input id="numjira" name="numjira" type="text" th:value="${bonlivraison.numjira}"
                        th:class="${#fields.hasErrors('numjira')}? invalid"/>
+                <label for="numjira">Redmine</label>
                 <div class="red-text" th:if="${#fields.hasErrors('numjira')}" th:errors="*{numjira}">numjira Error
                 </div>
             </div>
-            <div class="input-field col s2">
+            <div class="input-field col s3">
                 <i class="material-icons prefix">date_range</i>
                 <input type="text" name="datecreation" id="datecreation" th:value="${{bonlivraison.datecreation}}"
                        class="datepicker"/>
                 <label for="datecreation">Date de livraison</label>
-
             </div>
-            <div class="input-field col s2">
-
-                <input type="text" name="description" id="description" th:value="${bonlivraison.description}"/>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="description" name="description" class="materialize-textarea"
+                          th:value="${bonlivraison.description}"></textarea>
+                <label for="description">Description</label>
                 <div class="red-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
                     description
                     Error
                 </div>
-                <label for="description">Description</label>
 
             </div>
+        </div>
+        <div class="row">
             <div class="input-field col s2">
                 <select id="domaine" name="domaine" th:value="${bonlivraison.domaine}">
                     <option th:each="domaine : ${allDomaines}"
@@ -60,12 +63,15 @@
                 </select>
                 <label>Source</label>
             </div>
+
             <div class="input-field col s1">
                 <label for="pret">pret</label>
                 <input type="text" name="pret" id="pret" th:value="${bonlivraison.pret}">
 
             </div>
-            <div class="input-field col s1">
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
                 <button class="btn waves-effect waves-light" type="submit">Modifier
                     <i class="material-icons right">send</i></button>
             </div>
@@ -93,7 +99,17 @@
     $(document).ready(function () {
         $('select').material_select();
     });
-</script>
 
+    $('#description').trigger('autoresize');
+
+</script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $('#description').val([[${bonlivraison.description}]]);
+
+
+    /*]]>*/
+</script>
 
 </html>

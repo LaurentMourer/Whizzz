@@ -165,4 +165,23 @@ public class Entitedesign {
         result = 31 * result + (report != null ? report.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Entitedesign{" +
+                "identite=" + identite +
+                ", domaine='" + domaine + '\'' +
+                ", nom='" + nom + '\'' +
+                ", typedesign='" + typedesign + '\'' +
+                ", commentairetechnique='" + commentairetechnique + '\'' +
+                ", commentairefonctionnel='" + commentairefonctionnel + '\'' +
+                ", numhpqc='" + numhpqc + '\'' +
+                ", livrer='" + livrer + '\'' +
+                ", useridrh='" + useridrh + '\'' +
+                ", lastupdateidrh='" + lastupdateidrh + '\'' +
+                ", datecreation=" + datecreation +
+                ", datemodif=" + datemodif +
+                ", report='" + report + '\'' +
+                '}';
+    }
 }

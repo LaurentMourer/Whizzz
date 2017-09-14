@@ -108,4 +108,18 @@ public class Historique {
         result = 31 * result + (actionmanuelle != null ? actionmanuelle.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Historique{" +
+                "idrh='" + idrh + '\'' +
+                ", action='" + action + '\'' +
+                ", nom='" + nom + '\'' +
+                ", type='" + type + '\'' +
+                ", dateaction=" + dateaction +
+                ", id=" + id +
+                ", bonlivraison='" + bonlivraison + '\'' +
+                ", actionmanuelle='" + actionmanuelle + '\'' +
+                '}';
+    }
 }

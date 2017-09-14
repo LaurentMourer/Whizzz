@@ -72,4 +72,15 @@ public class Domaine {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Domaine{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", codliv='" + codliv + '\'' +
+                ", lettreliv='" + lettreliv + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

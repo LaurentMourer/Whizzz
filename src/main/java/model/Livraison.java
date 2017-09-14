@@ -55,4 +55,13 @@ public class Livraison {
         result = 31 * result + (etatlivraison != null ? etatlivraison.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Livraison{" +
+                "numlivraison='" + numlivraison + '\'' +
+                ", datelivraison=" + datelivraison +
+                ", etatlivraison='" + etatlivraison + '\'' +
+                '}';
+    }
 }

@@ -176,4 +176,24 @@ public class Entitefichier {
         result = 31 * result + (aconf != null ? aconf.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Entitefichier{" +
+                "identite=" + identite +
+                ", domaine='" + domaine + '\'' +
+                ", nomfichier='" + nomfichier + '\'' +
+                ", chemin='" + chemin + '\'' +
+                ", numversion=" + numversion +
+                ", commentairetechnique='" + commentairetechnique + '\'' +
+                ", commentairefonctionnel='" + commentairefonctionnel + '\'' +
+                ", numhpqc='" + numhpqc + '\'' +
+                ", lastupdateidrh='" + lastupdateidrh + '\'' +
+                ", useridrh='" + useridrh + '\'' +
+                ", datecreation=" + datecreation +
+                ", datemodif=" + datemodif +
+                ", report='" + report + '\'' +
+                ", aconf='" + aconf + '\'' +
+                '}';
+    }
 }

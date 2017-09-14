@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Liste Domaine</title>
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/icon.css}"/>
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+<body>
+<div th:insert="navbar"></div>
+
+<div class="row main">
+    <div class="col s12">
+        <form action="#" th:action="@{/listeEnvironnement}" th:object="${environnement}" method="post">
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="nomenvironnement" type="text" th:field="*{nomenvironnement}"
+                           th:class="${#fields.hasErrors('nomenvironnement')}? invalid"/>
+                    <label for="nomenvironnement">Nom environnement</label>
+                    <div class="red-text" th:if="${#fields.hasErrors('nomenvironnement')}"
+                         th:errors="*{nomenvironnement}">nomenvironnement Error
+                    </div>
+                </div>
+                <div class="input-field col s3">
+                    <input type="text" id="compilable" th:field="*{compilable}"
+                    />
+                    <label for="compilable">Compilable</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10">
+                <textarea id="description" class="materialize-textarea"
+                          th:field="*{description}"></textarea>
+                    <label for="description">Description</label>
+                    <div class="red-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+                        description
+                        Error
+                    </div>
+
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn waves-effect waves-light" type="submit">Creer
+                        <i class="material-icons right">send</i></button>
+                </div>
+            </div>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Nom environnement</th>
+                <th>Compilable</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sb : ${allEnvironnement}">
+                <td th:text="${sb.nomenvironnement}">13/01/2011</td>
+                <td th:text="${sb.compilable}">13/01/2011</td>
+                <td th:text="${sb.description}">13/01/2011</td>
+                <td>
+                    <a th:href="@{/afficherEnvironnement(id=${sb.nomenvironnement})}" class="btn-floating">
+                        <i class="material-icons">mode_edit</i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+    $('#description').trigger('autoresize');
+</script>
+</html>

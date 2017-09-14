@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Liste Domaine</title>
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/icon.css}"/>
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+<body>
+<div th:insert="navbar"></div>
+
+<div class="row main">
+    <div class="col s12">
+        <form action="#" th:action="@{/listeUtilisateur}" th:object="${utilisateur}" method="post">
+
+            <div class="row">
+                <div class="input-field col s2">
+                    <input id="identifiant" type="text" th:field="*{identifiant}"
+                           th:class="${#fields.hasErrors('identifiant')}? invalid"/>
+                    <label for="identifiant">Identifiant</label>
+                    <div class="red-text" th:if="${#fields.hasErrors('identifiant')}"
+                         th:errors="*{identifiant}">identifiant Error
+                    </div>
+                </div>
+                <div class="input-field col s4">
+                    <input id="nomuser" type="text" th:field="*{nomuser}"
+                           th:class="${#fields.hasErrors('nomuser')}? invalid"/>
+                    <label for="nomuser">Nom</label>
+                    <div class="red-text" th:if="${#fields.hasErrors('nomuser')}"
+                         th:errors="*{nomuser}">nomuser Error
+                    </div>
+                </div>
+                <div class="input-field col s4">
+                    <input id="prenomuser" type="text" th:field="*{prenomuser}"
+                           th:class="${#fields.hasErrors('prenomuser')}? invalid"/>
+                    <label for="prenomuser">Prenom</label>
+                    <div class="red-text" th:if="${#fields.hasErrors('prenomuser')}"
+                         th:errors="*{prenomuser}">prenomuser Error
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input id="role" type="text" th:field="*{role}"
+                           th:class="${#fields.hasErrors('role')}? invalid"/>
+                    <label for="role">Role</label>
+                    <div class="red-text" th:if="${#fields.hasErrors('role')}"
+                         th:errors="*{role}">role Error
+                    </div>
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn waves-effect waves-light" type="submit">Creer
+                        <i class="material-icons right">send</i></button>
+                </div>
+            </div>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Identifiant</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sb : ${allUtilisateur}">
+                <td th:text="${sb.identifiant}">13/01/2011</td>
+                <td th:text="${sb.nomuser}">13/01/2011</td>
+                <td th:text="${sb.prenomuser}">13/01/2011</td>
+                <td th:text="${sb.role}">13/01/2011</td>
+                <td>
+                    <a th:href="@{/afficherUtilisateur(id=${sb.identifiant})}" class="btn-floating">
+                        <i class="material-icons">mode_edit</i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+    $('#description').trigger('autoresize');
+</script>
+</html>

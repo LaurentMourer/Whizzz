@@ -178,4 +178,24 @@ public class Entitesql {
         result = 31 * result + (report != null ? report.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Entitesql{" +
+                "identite=" + identite +
+                ", domaine='" + domaine + '\'' +
+                ", typesql='" + typesql + '\'' +
+                ", nomprocess='" + nomprocess + '\'' +
+                ", ordresql='" + ordresql + '\'' +
+                ", ordresqlvidage='" + ordresqlvidage + '\'' +
+                ", commentairetechnique='" + commentairetechnique + '\'' +
+                ", commentairefonctionnel='" + commentairefonctionnel + '\'' +
+                ", numhpqc='" + numhpqc + '\'' +
+                ", useridrh='" + useridrh + '\'' +
+                ", lastupdateidrh='" + lastupdateidrh + '\'' +
+                ", datecreation=" + datecreation +
+                ", datemodif=" + datemodif +
+                ", report='" + report + '\'' +
+                '}';
+    }
 }

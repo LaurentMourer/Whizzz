@@ -26,7 +26,7 @@ public class MyUtilisateurService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(final String username)
             throws UsernameNotFoundException {
-        Utilisateur user = utilisateurDao.getUtilisateur(username);
+        Utilisateur user = utilisateurDao.getByKey(username);
 
         Set<String> userRoles = new HashSet<>();
         userRoles.add("Administrateur");

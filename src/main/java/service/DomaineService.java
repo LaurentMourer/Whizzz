@@ -17,7 +17,7 @@ public class DomaineService {
         domaineDao.delete(domaine);
     }
 
-    public Domaine getDomaine(String id) {
+    public Domaine getDomaine(Long id) {
         return domaineDao.getByKey(id);
     }
 

@@ -1,6 +1,17 @@
 package model;
 
 public class Utilisateur {
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "identifiant='" + identifiant + '\'' +
+                ", motdepasse='" + motdepasse + '\'' +
+                ", nomuser='" + nomuser + '\'' +
+                ", prenomuser='" + prenomuser + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
+
     private String identifiant;
     private String motdepasse;
     private String nomuser;

@@ -1,3 +1,8 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/icon.css}"/>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style type="text/css">
     .wrapper {
         padding-left: 300px;
@@ -9,35 +14,36 @@
 </style>
 <div class="wrapper">
 
-    <div class="">
-        <!-- Dropdown Structure -->
-        <ul id="dropdown1" class="dropdown-content">
-            <li></li>
-            <li><
-            <li><a th:href="@{/logout}">Logout</a></li>
-        </ul>
 
-        <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container">
-                <a href="#!" class="brand-logo">Super Whizzz</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a sec:authentication="name">Bob</a></li>
-                    <li><a sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</a></li>
-                    <li>
-                        <form th:action="@{/logout}" method="post">
-                            <button class="btn waves-effect waves-light" value="Log out" type="submit" name="action">
-                                Se deconnecter
-                            </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div style="padding: 0 .75rem;" class="nav-wrapper">
+            <a href="#!" class="brand-logo">Super Whizzz</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a sec:authentication="name">Bob</a></li>
+                <li sec:authorize="hasRole('ROLE_Administrateur')">
+                    <a>Administrateur</a>
+                </li>
+                <li>
+                <li>
+                    <a href="javascript: document.logoutForm.submit()" role="menuitem"> Deconnexion</a>
+                </li>
+                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
 
+                    <input hidden type="submit" value="Sign Out"/>
+                </form>
+
+
+            </ul>
+        </div>
+    </nav>
 </div>
 
 <ul id="slide-out" class="side-nav fixed">
+
     <li><a th:href="@{/listeBonLivraison}"><span>Bon de livraison</span></a></li>
-    <li><a href="#!">Second Sidebar Link</a></li>
+    <li><a th:href="@{/listeEnvironnement}"><span>Environnement</span></a></li>
+    <li><a th:href="@{/listeDomaine}"><span>Domaine</span></a></li>
+    <li><a th:href="@{/listeUtilisateur}"><span>Utilisateur</span></a></li>
+
+
 </ul>

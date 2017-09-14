@@ -1,6 +1,15 @@
 package model;
 
 public class Environnement {
+    @Override
+    public String toString() {
+        return "Environnement{" +
+                "nomenvironnement='" + nomenvironnement + '\'' +
+                ", description='" + description + '\'' +
+                ", compilable=" + compilable +
+                '}';
+    }
+
     private String nomenvironnement;
     private String description;
     private Long compilable;

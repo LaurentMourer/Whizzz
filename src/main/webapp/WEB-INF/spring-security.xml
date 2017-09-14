@@ -8,10 +8,17 @@
              http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/listeBonLivraison" access="hasRole('Administrateur')"/>
-        <intercept-url pattern="/home" access="hasRole('Administrateur')"/>
-        <intercept-url pattern="/afficherBonLivraison" access="hasRole('Administrateur')"/>
         <intercept-url pattern="/" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/home" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/navbar" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/listeBonLivraison" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/listeDomaine" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/listeEnvironnement" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/listeUtilisateur" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/afficherBonLivraison" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/afficherDomaine" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/afficherEnvironnement" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/afficherUtiliisateur" access="hasRole('Administrateur')"/>
 
 
         <!-- access denied page -->
