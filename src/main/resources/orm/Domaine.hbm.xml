@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
     <class name="model.Domaine" table="DOMAINE" schema="HR">
-        <id name="id" column="ID"/>
+        <id name="id" type="long" column="ID">
+            <generator class="increment"/>
+        </id>
         <property name="nom" column="NOM"/>
         <property name="codliv" column="CODLIV"/>
         <property name="lettreliv" column="LETTRELIV"/>

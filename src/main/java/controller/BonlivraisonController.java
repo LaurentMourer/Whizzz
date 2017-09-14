@@ -69,9 +69,9 @@ public class BonlivraisonController {
             return "listeBonLivraison";
         }
         logger.info(bonlivraison.toString());
+        bonlivraisonService.creerBonLivraison(bonlivraison);
         model.clear();
         return "redirect:/listeBonLivraison";
-
     }
 
     @PostMapping(value = "/modifierBl")
@@ -80,6 +80,8 @@ public class BonlivraisonController {
         if (bindingResult.hasErrors()) {
             return "afficherBonLivraison";
         }
+        //edit
+        bonlivraisonService.update(bonlivraison);
         logger.info(bonlivraison.toString());
         return "redirect:/listeBonLivraison";
 

@@ -43,6 +43,7 @@ public class UtilisateurController {
         if (bindingResult.hasErrors()) {
             return "listeUtilisateur";
         }
+        utilisateurService.creerUtilisateur(utilisateur);
         logger.info(utilisateur.toString());
         model.clear();
         return "redirect:/listeUtilisateur";

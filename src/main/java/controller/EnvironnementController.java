@@ -42,6 +42,7 @@ public class EnvironnementController {
         if (bindingResult.hasErrors()) {
             return "listeEnvironnement";
         }
+        environnementService.creerEnvironnement(environnement);
         logger.info(environnement.toString());
         model.clear();
         return "redirect:/listeEnvironnement";
@@ -54,6 +55,7 @@ public class EnvironnementController {
         if (bindingResult.hasErrors()) {
             return "afficherEnvironnement";
         }
+        environnementService.creerEnvironnement(environnement);
         logger.info(environnement.toString());
         return "redirect:/listeEnvironnement";
 

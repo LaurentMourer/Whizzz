@@ -26,6 +26,11 @@ public class BonlivraisonService {
 
     }
 
+    public void update(Bonlivraison bonlivraison)
+    {
+        bonlivraisonDao.update(bonlivraison);
+    }
+
     public BonlivraisonDao getBonlivraisonDao() {
         return bonlivraisonDao;
     }

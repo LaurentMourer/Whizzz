@@ -99,6 +99,9 @@
     <bean id="environnementService" class="service.EnvironnementService" autowire-candidate="true">
         <property name="environnementDao" ref="environnementDao"/>
     </bean>
+    <bean id="utilisateurService" class="service.UtilisateurService" autowire-candidate="true">
+        <property name="utilisateurDao" ref="userDao"/>
+    </bean>
 
     <!-- MUST have transaction manager, using aop and aspects  -->
     <bean id="transactionManager"

@@ -41,6 +41,7 @@ public class DomaineController {
         if (bindingResult.hasErrors()) {
             return "listeDomaine";
         }
+        domaineService.creerDomaine(domaine);
         logger.info(domaine.toString());
         model.clear();
         return "redirect:/listeDomaine";
@@ -53,6 +54,7 @@ public class DomaineController {
         if (bindingResult.hasErrors()) {
             return "afficherDomaine";
         }
+
         logger.info(domaine.toString());
         return "redirect:/listeDomaine";
 
