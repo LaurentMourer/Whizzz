@@ -73,10 +73,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="sb : ${allEntiteDesign}">
-                <td th:text="${{sb.nom}}">13/01/2011</td>
-                <td th:text="${{sb.typedesign}}">13/01/2011</td>
-                <td th:text="${{sb.livrer}}">13/01/2011</td>
+            <tr th:each="sb : ${bonLivraison.entitedesigns}">
+                <td th:text="${sb.nom}">13/01/2011</td>
+                <td th:text="${sb.typedesign}">13/01/2011</td>
+                <td th:text="${sb.livrer}">13/01/2011</td>
             </tr>
             </tbody>
         </table>
@@ -88,9 +88,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="sb : ${allEntiteFichier}">
-                <td th:text="${{sb.nomfichier}}">13/01/2011</td>
-                <td th:text="${{sb.chemin}}">13/01/2011</td>
+            <tr th:each="sb : ${bonLivraison.entitefichiers}">
+                <td th:text="${sb.nomfichier}">13/01/2011</td>
+                <td th:text="${sb.chemin}">13/01/2011</td>
             </tr>
             </tbody>
         </table>
@@ -103,10 +103,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="sb : ${allEntiteSql}">
-                <td th:text="${{sb.typesql}}">13/01/2011</td>
-                <td th:text="${{sb.nomprocess}}">13/01/2011</td>
-                <td th:text="${{sb.ordresql}}">13/01/2011</td>
+            <tr th:each="sb : ${bonLivraison.entitesqls}">
+                <td th:text="${sb.typesql}">13/01/2011</td>
+                <td th:text="${sb.nomprocess}">13/01/2011</td>
+                <td th:text="${sb.ordresql}">13/01/2011</td>
             </tr>
             </tbody>
         </table>

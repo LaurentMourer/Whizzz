@@ -17,6 +17,15 @@ public class Entitefichier {
     private Timestamp datemodif;
     private String report;
     private String aconf;
+    private Bonlivraison bonlivraison;
+
+    public Bonlivraison getBonlivraison() {
+        return bonlivraison;
+    }
+
+    public void setBonlivraison(Bonlivraison bonlivraison) {
+        this.bonlivraison = bonlivraison;
+    }
 
     public Integer getIdentite() {
         return identite;

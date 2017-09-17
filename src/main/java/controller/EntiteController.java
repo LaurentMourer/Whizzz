@@ -35,13 +35,11 @@ public class EntiteController {
         super();
     }
 
-    @GetMapping("/listeEntite")
-    public String listeEntite(  Entitedesign entitedesign, Entitefichier entitefichier, Entitesql entitesql, Model model) {
-        model.addAttribute("allEntiteDesign", entitedesignService.getAll());
-        model.addAttribute("allEntiteFichier", entiteFichierService.getAll());
-        model.addAttribute("allEntiteSql", entiteSqlService.getAll());
+  /*  @GetMapping("/listeEntite")
+    public String listeEntite( @RequestParam("id") String id, Entitedesign entitedesign, Entitefichier entitefichier, Entitesql entitesql, Model model) {
+        model.addAttribute("bonLivraison", entitedesignService.getAll());
         return "listeEntite";
-    }
+    }*/
 
     @PostMapping(value = "/creerEntiteDesign")
     public String checkEntiteDesign(@Valid final Entitedesign entitedesign, final BindingResult bindingResult, final ModelMap model) {

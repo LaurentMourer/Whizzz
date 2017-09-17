@@ -2,6 +2,9 @@ package controller;
 
 import model.Bonlivraison;
 
+import model.Entitedesign;
+import model.Entitefichier;
+import model.Entitesql;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,6 +80,11 @@ public class BonlivraisonController {
         model.addAttribute("allSources", environnementService.getAll());
         model.addAttribute("bonlivraison", bonlivraison);
         return "afficherBonLivraison";
+    }
+    @GetMapping("/listeEntite")
+    public String listeEntite(@RequestParam("id") String id, Entitedesign entitedesign, Entitefichier entitefichier, Entitesql entitesql, Model model) {
+        model.addAttribute("bonLivraison", bonlivraisonService.get(id));
+        return "listeEntite";
     }
 
 

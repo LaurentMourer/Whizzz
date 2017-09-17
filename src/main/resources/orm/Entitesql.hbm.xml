@@ -19,5 +19,8 @@
         <property name="datecreation" column="DATECREATION"/>
         <property name="datemodif" column="DATEMODIF"/>
         <property name="report" column="REPORT"/>
+        <many-to-one name="bonlivraison" class="model.Bonlivraison" fetch="select">
+            <column name="BONLIVRAISONNUMJIRA" not-null="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

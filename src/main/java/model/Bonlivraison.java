@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Bonlivraison {
 
@@ -21,6 +23,36 @@ public class Bonlivraison {
     private Timestamp datemodif;
     private String auteurmodif;
     private String source;
+    private Set<Entitedesign> entitedesigns =
+            new HashSet<Entitedesign>(0);
+    private Set<Entitefichier> entitefichiers =
+            new HashSet<Entitefichier>(0);
+    private Set<Entitesql> entitesqls =
+            new HashSet<Entitesql>(0);
+
+    public Set<Entitedesign> getEntitedesigns() {
+        return entitedesigns;
+    }
+
+    public void setEntitedesigns(Set<Entitedesign> entitedesigns) {
+        this.entitedesigns = entitedesigns;
+    }
+
+    public Set<Entitefichier> getEntitefichiers() {
+        return entitefichiers;
+    }
+
+    public void setEntitefichiers(Set<Entitefichier> entitefichiers) {
+        this.entitefichiers = entitefichiers;
+    }
+
+    public Set<Entitesql> getEntitesqls() {
+        return entitesqls;
+    }
+
+    public void setEntitesqls(Set<Entitesql> entitesqls) {
+        this.entitesqls = entitesqls;
+    }
 
     public String getNumjira() {
         return numjira;
@@ -164,6 +196,9 @@ public class Bonlivraison {
                 ", datemodif=" + datemodif +
                 ", auteurmodif='" + auteurmodif + '\'' +
                 ", source='" + source + '\'' +
+                ", entitedesigns=" + entitedesigns +
+                ", entitefichiers=" + entitefichiers +
+                ", entitesqls=" + entitesqls +
                 '}';
     }
 }
