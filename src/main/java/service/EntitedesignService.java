@@ -1,4 +1,4 @@
 package service;
 
-public class EntitedesignService {
+public class EntitedesignService extends AbstractService{
 }

@@ -8,13 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.DomaineService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @Controller
@@ -23,13 +21,9 @@ public class DomaineController {
     @Autowired
     private DomaineService domaineService;
 
-    @ModelAttribute("allDomaine")
-    public List<Domaine> populateDomaines() {
-        return domaineService.getAll();
-    }
-
     @GetMapping("/listeDomaine")
-    public String listeDomaine(Domaine domaine) {
+    public String listeDomaine(Domaine domaine, Model model) {
+        model.addAttribute("allDomaine", domaineService.getAll());
         return "listeDomaine";
     }
 
@@ -41,7 +35,7 @@ public class DomaineController {
         if (bindingResult.hasErrors()) {
             return "listeDomaine";
         }
-        domaineService.creerDomaine(domaine);
+        domaineService.create(domaine);
         logger.info(domaine.toString());
         model.clear();
         return "redirect:/listeDomaine";
@@ -54,8 +48,8 @@ public class DomaineController {
         if (bindingResult.hasErrors()) {
             return "afficherDomaine";
         }
-
         logger.info(domaine.toString());
+        domaineService.update(domaine);
         return "redirect:/listeDomaine";
 
     }
@@ -63,7 +57,7 @@ public class DomaineController {
     @GetMapping("/afficherDomaine")
     public String afficherDomaine(@RequestParam("id") Long id, Domaine domaine, Model model) {
         logger.info(id);
-        domaine = domaineService.getDomaine(id);
+        domaine = (Domaine) domaineService.get(id);
         logger.info(domaine.toString());
         model.addAttribute("domaine", domaine);
         return "afficherDomaine";

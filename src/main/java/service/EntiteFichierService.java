@@ -1,4 +1,4 @@
 package service;
 
-public class EntiteFichierService {
+public class EntiteFichierService extends AbstractService {
 }

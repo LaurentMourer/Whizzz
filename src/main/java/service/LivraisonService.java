@@ -1,4 +1,4 @@
 package service;
 
-public class LivraisonService {
+public class LivraisonService extends AbstractService{
 }

@@ -45,7 +45,7 @@
         </div>
         <div class="row">
             <div class="input-field col s2">
-                <select id="domaine" name="domaine" th:value="${bonlivraison.domaine}">
+                <select id="domaine" name="domaine">
                     <option th:each="domaine : ${allDomaines}"
                             th:value="${domaine.getNom()}"
                             th:text="${domaine.getNom()}">Wireframe
@@ -55,7 +55,7 @@
 
             </div>
             <div class="input-field col s2">
-                <select id="source" name="source" th:value="${bonlivraison.source}">
+                <select id="source" name="source">
                     <option th:each="environnement : ${allSources}"
                             th:value="${environnement.getNomenvironnement()}"
                             th:text="${environnement.getNomenvironnement()}">nomenvironnement
@@ -107,6 +107,9 @@
     /*<![CDATA[*/
 
     $('#description').val([[${bonlivraison.description}]]);
+
+    $('#source').val([[${bonlivraison.source}]]);
+    $('#domaine').val([[${bonlivraison.domaine}]]);
 
 
     /*]]>*/

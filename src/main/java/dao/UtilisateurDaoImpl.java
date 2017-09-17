@@ -1,13 +1,6 @@
 package dao;
 
 import model.Utilisateur;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import org.hibernate.resource.transaction.spi.TransactionStatus;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UtilisateurDaoImpl extends AbstractDao<String, Utilisateur> implements UtilisateurDao {
 

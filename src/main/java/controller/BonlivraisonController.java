@@ -1,8 +1,6 @@
 package controller;
 
 import model.Bonlivraison;
-import model.Domaine;
-import model.Environnement;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import service.DomaineService;
 import service.EnvironnementService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class BonlivraisonController {
@@ -38,26 +35,11 @@ public class BonlivraisonController {
         super();
     }
 
-
-    @ModelAttribute("allBonLivraison")
-    public List<Bonlivraison> populateBonLivraison() {
-        return bonlivraisonService.getAll();
-    }
-
-    @ModelAttribute("allDomaines")
-    public List<Domaine> populateDomaines() {
-        return domaineService.getAll();
-    }
-
-
-    @ModelAttribute("allSources")
-    public List<Environnement> populateSources() {
-        return environnementService.getAll();
-    }
-
-
     @GetMapping("/listeBonLivraison")
-    public String listeBonLivraison(Bonlivraison bonlivraison) {
+    public String listeBonLivraison(Bonlivraison bonlivraison, Model model) {
+        model.addAttribute("allBonLivraison", bonlivraisonService.getAll());
+        model.addAttribute("allDomaines", domaineService.getAll());
+        model.addAttribute("allSources", environnementService.getAll());
         return "listeBonLivraison";
     }
 
@@ -69,7 +51,7 @@ public class BonlivraisonController {
             return "listeBonLivraison";
         }
         logger.info(bonlivraison.toString());
-        bonlivraisonService.creerBonLivraison(bonlivraison);
+        bonlivraisonService.create(bonlivraison);
         model.clear();
         return "redirect:/listeBonLivraison";
     }
@@ -80,9 +62,8 @@ public class BonlivraisonController {
         if (bindingResult.hasErrors()) {
             return "afficherBonLivraison";
         }
-        //edit
-        bonlivraisonService.update(bonlivraison);
         logger.info(bonlivraison.toString());
+        bonlivraisonService.update(bonlivraison);
         return "redirect:/listeBonLivraison";
 
     }
@@ -90,8 +71,10 @@ public class BonlivraisonController {
     @GetMapping("/afficherBonLivraison")
     public String afficherBonLivraison(@RequestParam("id") String id, Bonlivraison bonlivraison, Model model) {
         logger.info(id);
-        bonlivraison = bonlivraisonService.get(id);
+        bonlivraison = (Bonlivraison) bonlivraisonService.get(id);
         logger.info(bonlivraison.toString());
+        model.addAttribute("allDomaines", domaineService.getAll());
+        model.addAttribute("allSources", environnementService.getAll());
         model.addAttribute("bonlivraison", bonlivraison);
         return "afficherBonLivraison";
     }

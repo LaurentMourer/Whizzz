@@ -1,4 +1,4 @@
 package service;
 
-public class EntiteSqlService {
+public class EntiteSqlService extends AbstractService{
 }

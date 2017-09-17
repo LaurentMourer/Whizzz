@@ -8,13 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.EnvironnementService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class EnvironnementController {
@@ -24,14 +22,10 @@ public class EnvironnementController {
 
     private static final Logger logger = Logger.getLogger(EnvironnementController.class);
 
-
-    @ModelAttribute("allEnvironnement")
-    public List<Environnement> populateEnvironnement() {
-        return environnementService.getAll();
-    }
-
     @GetMapping("/listeEnvironnement")
-    public String listeEnvironnement(Environnement environnement) {
+    public String listeEnvironnement(Environnement environnement, Model model) {
+
+        model.addAttribute("allEnvironnement", environnementService.getAll());
         return "listeEnvironnement";
     }
 
@@ -42,7 +36,7 @@ public class EnvironnementController {
         if (bindingResult.hasErrors()) {
             return "listeEnvironnement";
         }
-        environnementService.creerEnvironnement(environnement);
+        environnementService.create(environnement);
         logger.info(environnement.toString());
         model.clear();
         return "redirect:/listeEnvironnement";
@@ -55,7 +49,7 @@ public class EnvironnementController {
         if (bindingResult.hasErrors()) {
             return "afficherEnvironnement";
         }
-        environnementService.creerEnvironnement(environnement);
+        environnementService.update(environnement);
         logger.info(environnement.toString());
         return "redirect:/listeEnvironnement";
 
@@ -64,7 +58,7 @@ public class EnvironnementController {
     @GetMapping("/afficherEnvironnement")
     public String afficherEnvironnement(@RequestParam("id") String id, Environnement environnement, Model model) {
         logger.info(id);
-        environnement = environnementService.getEnvironnement(id);
+        environnement = (Environnement) environnementService.get(id);
         logger.info(environnement.toString());
         model.addAttribute("environnement", environnement);
         return "afficherEnvironnement";

@@ -89,18 +89,27 @@
     </bean>
 
     <bean id="bonLivraisonService" class="service.BonlivraisonService" autowire-candidate="true">
-        <property name="bonlivraisonDao" ref="bonLivraisonDao"/>
+        <property name="abstractDao" ref="bonLivraisonDao"/>
     </bean>
 
     <bean id="domaineService" class="service.DomaineService" autowire-candidate="true">
-        <property name="domaineDao" ref="domaineDao"/>
+        <property name="abstractDao" ref="domaineDao"/>
     </bean>
 
     <bean id="environnementService" class="service.EnvironnementService" autowire-candidate="true">
-        <property name="environnementDao" ref="environnementDao"/>
+        <property name="abstractDao" ref="environnementDao"/>
     </bean>
     <bean id="utilisateurService" class="service.UtilisateurService" autowire-candidate="true">
-        <property name="utilisateurDao" ref="userDao"/>
+        <property name="abstractDao" ref="userDao"/>
+    </bean>
+    <bean id="entiteDesignService" class="service.EntitedesignService" autowire-candidate="true">
+        <property name="abstractDao" ref="entiteDesignDao"/>
+    </bean>
+    <bean id="entiteSqlService" class="service.EntiteSqlService" autowire-candidate="true">
+        <property name="abstractDao" ref="entiteSqlDao"/>
+    </bean>
+    <bean id="entiteFichierService" class="service.EntiteFichierService" autowire-candidate="true">
+        <property name="abstractDao" ref="entiteFichierDao"/>
     </bean>
 
     <!-- MUST have transaction manager, using aop and aspects  -->

@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="model.Entitedesign" table="ENTITEDESIGN" schema="HR">
-        <id name="identite" column="IDENTITE"/>
+        <id name="identite" type="integer" column="IDENTITE">
+            <generator class="increment"/>
+        </id>
         <property name="domaine" column="DOMAINE"/>
         <property name="nom" column="NOM"/>
         <property name="typedesign" column="TYPEDESIGN"/>

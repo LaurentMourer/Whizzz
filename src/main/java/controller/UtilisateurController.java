@@ -8,14 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import service.DomaineService;
 import service.UtilisateurService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class UtilisateurController {
@@ -25,14 +22,9 @@ public class UtilisateurController {
 
     private static final Logger logger = Logger.getLogger(Utilisateur.class);
 
-
-    @ModelAttribute("allUtilisateur")
-    public List<Utilisateur> populateUtilisateur() {
-        return utilisateurService.getAllUtilisateur();
-    }
-
     @GetMapping("/listeUtilisateur")
-    public String listeUtilisateur(Utilisateur utilisateur) {
+    public String listeUtilisateur(Utilisateur utilisateur, Model model) {
+        model.addAttribute("allUtilisateur", utilisateurService.getAll());
         return "listeUtilisateur";
     }
 
@@ -43,7 +35,7 @@ public class UtilisateurController {
         if (bindingResult.hasErrors()) {
             return "listeUtilisateur";
         }
-        utilisateurService.creerUtilisateur(utilisateur);
+        utilisateurService.create(utilisateur);
         logger.info(utilisateur.toString());
         model.clear();
         return "redirect:/listeUtilisateur";
@@ -57,6 +49,7 @@ public class UtilisateurController {
             return "afficherUtilisateur";
         }
         logger.info(utilisateur.toString());
+        utilisateurService.update(utilisateur);
         return "redirect:/listeUtilisateur";
 
     }
@@ -64,7 +57,7 @@ public class UtilisateurController {
     @GetMapping("/afficherUtilisateur")
     public String afficherUtilisateur(@RequestParam("id") String id, Utilisateur utilisateur, Model model) {
         logger.info(id);
-        utilisateur = utilisateurService.getUtilisateur(id);
+        utilisateur = (Utilisateur) utilisateurService.get(id);
         logger.info(utilisateur.toString());
         model.addAttribute("utilisateur", utilisateur);
         return "afficherUtilisateur";
