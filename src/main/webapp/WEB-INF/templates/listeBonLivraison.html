@@ -77,6 +77,18 @@
                 </div>
             </div>
         </form>
+        <div class="input-field col s2">
+            <form action="#" th:action="@{/listeBonLivraison}" method="get">
+                <select name="date" id="date">
+                    <option th:each="date : ${dateBl}"
+                            th:value="${{date}}"
+                            th:text="${{date}}">Wireframe
+                    </option>
+                </select>
+                <label>Date</label>
+                <input type="submit">
+            </form>
+        </div>
 
         <table>
             <thead>
@@ -130,5 +142,8 @@
         $('select').material_select();
     });
     $('#description').trigger('autoresize');
+
+</script>
+<script th:inline="javascript">
 </script>
 </html>

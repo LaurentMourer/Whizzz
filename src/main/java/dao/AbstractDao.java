@@ -1,6 +1,8 @@
 package dao;
 
-import org.hibernate.*;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

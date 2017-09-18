@@ -17,6 +17,7 @@ import service.DomaineService;
 import service.EnvironnementService;
 
 import javax.validation.Valid;
+import java.util.*;
 
 @Controller
 public class BonlivraisonController {
@@ -39,10 +40,19 @@ public class BonlivraisonController {
     }
 
     @GetMapping("/listeBonLivraison")
-    public String listeBonLivraison(Bonlivraison bonlivraison, Model model) {
-        model.addAttribute("allBonLivraison", bonlivraisonService.getAll());
+    public String listeBonLivraison(@RequestParam(required = false) Date date, Bonlivraison bonlivraison, Model model) {
+        long debut = System.currentTimeMillis();
+        List<Date> setDate = bonlivraisonService.getDateBl();
+        if (date == null) {
+            date = setDate.get(0);
+        }
+        model.addAttribute("dateBl", setDate);
+        model.addAttribute("allBonLivraison", bonlivraisonService.getBonLivraisonByDate(date));
         model.addAttribute("allDomaines", domaineService.getAll());
         model.addAttribute("allSources", environnementService.getAll());
+
+        logger.info(System.currentTimeMillis() - debut);
+
         return "listeBonLivraison";
     }
 
@@ -81,6 +91,7 @@ public class BonlivraisonController {
         model.addAttribute("bonlivraison", bonlivraison);
         return "afficherBonLivraison";
     }
+
     @GetMapping("/listeEntite")
     public String listeEntite(@RequestParam("id") String id, Entitedesign entitedesign, Entitefichier entitefichier, Entitesql entitesql, Model model) {
         model.addAttribute("bonLivraison", bonlivraisonService.get(id));

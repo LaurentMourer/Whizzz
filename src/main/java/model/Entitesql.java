@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Timestamp;
 
-public class Entitesql {
+public class Entitesql extends Entite {
     private Integer identite;
     private String domaine;
     private String typesql;

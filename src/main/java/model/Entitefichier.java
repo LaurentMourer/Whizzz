@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Timestamp;
 
-public class Entitefichier {
+public class Entitefichier extends Entite {
     private Integer identite;
     private String domaine;
     private String nomfichier;

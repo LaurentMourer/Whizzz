@@ -1,18 +1,14 @@
 package controller;
 
-import model.Bonlivraison;
 import model.Entitedesign;
 import model.Entitefichier;
 import model.Entitesql;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import service.EntiteFichierService;
 import service.EntiteSqlService;
 import service.EntitedesignService;
@@ -35,12 +31,6 @@ public class EntiteController {
         super();
     }
 
-  /*  @GetMapping("/listeEntite")
-    public String listeEntite( @RequestParam("id") String id, Entitedesign entitedesign, Entitefichier entitefichier, Entitesql entitesql, Model model) {
-        model.addAttribute("bonLivraison", entitedesignService.getAll());
-        return "listeEntite";
-    }*/
-
     @PostMapping(value = "/creerEntiteDesign")
     public String checkEntiteDesign(@Valid final Entitedesign entitedesign, final BindingResult bindingResult, final ModelMap model) {
 
@@ -54,13 +44,13 @@ public class EntiteController {
     }
 
     @PostMapping(value = "/creerEntiteFichier")
-    public String checkEntiteFichier(@Valid final Entitefichier entiteFichier, final BindingResult bindingResult, final ModelMap model) {
+    public String checkEntiteFichier(@Valid final Entitefichier entitefichier, final BindingResult bindingResult, final ModelMap model) {
 
         if (bindingResult.hasErrors()) {
             return "listeEntite";
         }
-        logger.info(entiteFichier.toString());
-        entiteFichierService.create(entiteFichier);
+        logger.info(entitefichier.toString());
+        entiteFichierService.create(entitefichier);
         model.clear();
         return "redirect:/listeEntite";
     }

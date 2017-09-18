@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Timestamp;
 
-public class Entitedesign {
+public class Entitedesign extends Entite{
     private Integer identite;
     private String domaine;
     private String nom;
