@@ -21,13 +21,17 @@ public class DomaineController {
     @Autowired
     private DomaineService domaineService;
 
+    private static final Logger logger = Logger.getLogger(DomaineController.class);
+
+    public DomaineController() {
+        super();
+    }
+
     @GetMapping("/listeDomaine")
     public String listeDomaine(Domaine domaine, Model model) {
         model.addAttribute("allDomaine", domaineService.getAll());
         return "listeDomaine";
     }
-
-    private static final Logger logger = Logger.getLogger(DomaineController.class);
 
     @PostMapping(value = "/listeDomaine")
     public String checkDomaineInfo(@Valid final Domaine domaine, final BindingResult bindingResult, final ModelMap model) {
@@ -39,7 +43,6 @@ public class DomaineController {
         logger.info(domaine.toString());
         model.clear();
         return "redirect:/listeDomaine";
-
     }
 
     @PostMapping(value = "/modifierDomaine")
@@ -51,7 +54,6 @@ public class DomaineController {
         logger.info(domaine.toString());
         domaineService.update(domaine);
         return "redirect:/listeDomaine";
-
     }
 
     @GetMapping("/afficherDomaine")

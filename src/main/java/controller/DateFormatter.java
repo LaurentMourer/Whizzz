@@ -14,7 +14,6 @@ public class DateFormatter implements Formatter<Date> {
     @Autowired
     private MessageSource messageSource;
 
-
     public DateFormatter() {
         super();
     }

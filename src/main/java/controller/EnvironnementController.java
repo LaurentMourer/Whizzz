@@ -24,15 +24,12 @@ public class EnvironnementController {
 
     @GetMapping("/listeEnvironnement")
     public String listeEnvironnement(Environnement environnement, Model model) {
-
         model.addAttribute("allEnvironnement", environnementService.getAll());
         return "listeEnvironnement";
     }
 
-
     @PostMapping(value = "/listeEnvironnement")
     public String checkEnvironnementInfo(@Valid final Environnement environnement, final BindingResult bindingResult, final ModelMap model) {
-
         if (bindingResult.hasErrors()) {
             return "listeEnvironnement";
         }
@@ -40,19 +37,16 @@ public class EnvironnementController {
         logger.info(environnement.toString());
         model.clear();
         return "redirect:/listeEnvironnement";
-
     }
 
     @PostMapping(value = "/modifierEnvironnement")
     public String modifierEnvironnement(@Valid final Environnement environnement, final BindingResult bindingResult, final ModelMap model) {
-
         if (bindingResult.hasErrors()) {
             return "afficherEnvironnement";
         }
         environnementService.update(environnement);
         logger.info(environnement.toString());
         return "redirect:/listeEnvironnement";
-
     }
 
     @GetMapping("/afficherEnvironnement")

@@ -22,7 +22,6 @@ import java.util.*;
 @Controller
 public class BonlivraisonController {
 
-
     @Autowired
     private BonlivraisonService bonlivraisonService;
 
@@ -31,7 +30,6 @@ public class BonlivraisonController {
 
     @Autowired
     private EnvironnementService environnementService;
-
 
     private static final Logger logger = Logger.getLogger(BonlivraisonController.class);
 
@@ -50,16 +48,12 @@ public class BonlivraisonController {
         model.addAttribute("allBonLivraison", bonlivraisonService.getBonLivraisonByDate(date));
         model.addAttribute("allDomaines", domaineService.getAll());
         model.addAttribute("allSources", environnementService.getAll());
-
         logger.info(System.currentTimeMillis() - debut);
-
         return "listeBonLivraison";
     }
 
-
     @PostMapping(value = "/listeBonLivraison")
     public String checkBonLivraisonInfo(@Valid final Bonlivraison bonlivraison, final BindingResult bindingResult, final ModelMap model) {
-
         if (bindingResult.hasErrors()) {
             return "listeBonLivraison";
         }
@@ -71,14 +65,12 @@ public class BonlivraisonController {
 
     @PostMapping(value = "/modifierBl")
     public String modifierBl(@Valid final Bonlivraison bonlivraison, final BindingResult bindingResult, final ModelMap model) {
-
         if (bindingResult.hasErrors()) {
             return "afficherBonLivraison";
         }
         logger.info(bonlivraison.toString());
         bonlivraisonService.update(bonlivraison);
         return "redirect:/listeBonLivraison";
-
     }
 
     @GetMapping("/afficherBonLivraison")

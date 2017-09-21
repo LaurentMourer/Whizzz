@@ -28,10 +28,8 @@ public class UtilisateurController {
         return "listeUtilisateur";
     }
 
-
     @PostMapping(value = "/listeUtilisateur")
     public String checkUtilisateurInfo(@Valid final Utilisateur utilisateur, final BindingResult bindingResult, final ModelMap model) {
-
         if (bindingResult.hasErrors()) {
             return "listeUtilisateur";
         }
@@ -39,19 +37,16 @@ public class UtilisateurController {
         logger.info(utilisateur.toString());
         model.clear();
         return "redirect:/listeUtilisateur";
-
     }
 
     @PostMapping(value = "/modifierUtilisateur")
     public String modifierUtilisateur(@Valid final Utilisateur utilisateur, final BindingResult bindingResult, final ModelMap model) {
-
         if (bindingResult.hasErrors()) {
             return "afficherUtilisateur";
         }
         logger.info(utilisateur.toString());
         utilisateurService.update(utilisateur);
         return "redirect:/listeUtilisateur";
-
     }
 
     @GetMapping("/afficherUtilisateur")

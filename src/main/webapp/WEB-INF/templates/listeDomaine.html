@@ -11,48 +11,10 @@
     </head>
 <body>
 <div th:insert="navbar"></div>
-
 <div class="row main">
     <div class="col s12">
-        <form action="#" th:action="@{/listeDomaine}" th:object="${domaine}" method="post">
-
-            <div class="row">
-                <div class="input-field col s6">
-                    <input id="nom" type="text" th:field="*{nom}"
-                           th:class="${#fields.hasErrors('nom')}? invalid"/>
-                    <label for="nom">Nom</label>
-                    <div class="red-text" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Nom Error
-                    </div>
-                </div>
-                <div class="input-field col s3">
-                    <input type="text" id="codliv" th:field="*{codliv}"
-                    />
-                    <label for="codliv">Code livraison</label>
-                </div>
-                <div class="input-field col s3">
-                    <input type="text" id="lettreliv" th:field="*{lettreliv}"
-                    />
-                    <label for="lettreliv">Lettre livraison</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s10">
-                <textarea id="description" class="materialize-textarea"
-                          th:field="*{description}"></textarea>
-                    <label for="description">Description</label>
-                    <div class="red-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
-                        description
-                        Error
-                    </div>
-
-                </div>
-                <div class="input-field col s2">
-                    <button class="btn waves-effect waves-light" type="submit">Creer
-                        <i class="material-icons right">send</i></button>
-                </div>
-            </div>
-        </form>
-
+        <div th:include="creationDomaine :: creationDomaine">
+        </div>
         <table>
             <thead>
             <tr>
@@ -79,7 +41,6 @@
         </table>
     </div>
 </div>
-
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>

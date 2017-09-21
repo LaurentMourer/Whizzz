@@ -10,6 +10,10 @@ public class LoginController {
 
     private static final Logger logger = Logger.getLogger(LoginController.class);
 
+    public LoginController() {
+        super();
+    }
+
     // Login form
     @RequestMapping("/login")
     public String login() {

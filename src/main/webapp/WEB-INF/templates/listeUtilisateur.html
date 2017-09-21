@@ -14,50 +14,9 @@
 
 <div class="row main">
     <div class="col s12">
-        <form action="#" th:action="@{/listeUtilisateur}" th:object="${utilisateur}" method="post">
-
-            <div class="row">
-                <div class="input-field col s2">
-                    <input id="identifiant" type="text" th:field="*{identifiant}"
-                           th:class="${#fields.hasErrors('identifiant')}? invalid"/>
-                    <label for="identifiant">Identifiant</label>
-                    <div class="red-text" th:if="${#fields.hasErrors('identifiant')}"
-                         th:errors="*{identifiant}">identifiant Error
-                    </div>
-                </div>
-                <div class="input-field col s4">
-                    <input id="nomuser" type="text" th:field="*{nomuser}"
-                           th:class="${#fields.hasErrors('nomuser')}? invalid"/>
-                    <label for="nomuser">Nom</label>
-                    <div class="red-text" th:if="${#fields.hasErrors('nomuser')}"
-                         th:errors="*{nomuser}">nomuser Error
-                    </div>
-                </div>
-                <div class="input-field col s4">
-                    <input id="prenomuser" type="text" th:field="*{prenomuser}"
-                           th:class="${#fields.hasErrors('prenomuser')}? invalid"/>
-                    <label for="prenomuser">Prenom</label>
-                    <div class="red-text" th:if="${#fields.hasErrors('prenomuser')}"
-                         th:errors="*{prenomuser}">prenomuser Error
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s4">
-                    <input id="role" type="text" th:field="*{role}"
-                           th:class="${#fields.hasErrors('role')}? invalid"/>
-                    <label for="role">Role</label>
-                    <div class="red-text" th:if="${#fields.hasErrors('role')}"
-                         th:errors="*{role}">role Error
-                    </div>
-                </div>
-                <div class="input-field col s2">
-                    <button class="btn waves-effect waves-light" type="submit">Creer
-                        <i class="material-icons right">send</i></button>
-                </div>
-            </div>
-        </form>
-
+        <div th:include="creationUtilisateur :: creationUtilisateur">
+            
+        </div>
         <table>
             <thead>
             <tr>

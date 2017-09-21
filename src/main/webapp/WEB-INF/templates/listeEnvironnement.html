@@ -14,41 +14,7 @@
 
 <div class="row main">
     <div class="col s12">
-        <form action="#" th:action="@{/listeEnvironnement}" th:object="${environnement}" method="post">
-
-            <div class="row">
-                <div class="input-field col s6">
-                    <input id="nomenvironnement" type="text" th:field="*{nomenvironnement}"
-                           th:class="${#fields.hasErrors('nomenvironnement')}? invalid"/>
-                    <label for="nomenvironnement">Nom environnement</label>
-                    <div class="red-text" th:if="${#fields.hasErrors('nomenvironnement')}"
-                         th:errors="*{nomenvironnement}">nomenvironnement Error
-                    </div>
-                </div>
-                <div class="input-field col s3">
-                    <input type="text" id="compilable" th:field="*{compilable}"
-                    />
-                    <label for="compilable">Compilable</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s10">
-                <textarea id="description" class="materialize-textarea"
-                          th:field="*{description}"></textarea>
-                    <label for="description">Description</label>
-                    <div class="red-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
-                        description
-                        Error
-                    </div>
-
-                </div>
-                <div class="input-field col s2">
-                    <button class="btn waves-effect waves-light" type="submit">Creer
-                        <i class="material-icons right">send</i></button>
-                </div>
-            </div>
-        </form>
-
+        <div th:include="creationEnvironnement :: creationEnvironnement"></div>
         <table>
             <thead>
             <tr>
@@ -73,7 +39,7 @@
         </table>
     </div>
 </div>
-
+</div>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
