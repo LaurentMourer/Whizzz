@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/icon.css}"/>
-<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}"/>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.css}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style type="text/css">
     .wrapper {
@@ -11,13 +11,53 @@
     .main {
         padding-left: 300px;
     }
+
+    /* label color */
+    .input-field label {
+        color: #1e88e5;
+    }
+
+    .active label {
+        color: #1e88e5;
+    }
+
+    /* label focus color */
+    .input-field input[type=text]:focus + label {
+        color: #1e88e5;
+    }
+
+    /* label underline focus color */
+    .input-field input[type=text]:focus {
+        border-bottom: 1px solid #1e88e5;
+        box-shadow: 0 1px 0 0 #1e88e5;
+    }
+
+    /* valid color */
+    .input-field input[type=text].valid {
+        border-bottom: 1px solid #1e88e5;
+        box-shadow: 0 1px 0 0 #1e88e5;
+    }
+
+    /* invalid color */
+    .input-field input[type=text].invalid {
+        border-bottom: 1px solid #000;
+        box-shadow: 0 1px 0 0 #000;
+    }
+
+    /* icon prefix focus color */
+    .input-field .prefix.active {
+        color: #1e88e5;
+    }
 </style>
 <div class="wrapper">
 
 
-    <nav class="light-blue lighten-1" role="navigation">
+    <nav class="blue darken-1 " role="navigation">
         <div style="padding: 0 .75rem;" class="nav-wrapper">
-            <a href="#!" class="brand-logo">Super Whizzz</a>
+            <a href="#!" class="brand-logo"> Super Whizzz
+            </a>
+
+
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a sec:authentication="name">Bob</a></li>
                 <li sec:authorize="hasRole('ROLE_Administrateur')">
@@ -39,14 +79,15 @@
 </div>
 
 <ul id="slide-out" class="side-nav fixed">
+    <center>
+        <li class="logo"><img th:src="@{/images/superWhizzz.png}" style="width:250px"/></li>
+    </center>
 
     <li><a th:href="@{/listeBonLivraison}"><span>Bon de livraison</span></a></li>
     <li><a th:href="@{/listeEnvironnement}"><span>Environnement</span></a></li>
     <li><a th:href="@{/listeDomaine}"><span>Domaine</span></a></li>
     <li><a th:href="@{/listeUtilisateur}"><span>Utilisateur</span></a></li>
-    <li><a th:href="@{/listeEntite}"><span>Entite</span></a></li>
-
-
+    <li><a th:href="@{/listeLivraison}"><span>Livraison</span></a></li>
 
 
 </ul>

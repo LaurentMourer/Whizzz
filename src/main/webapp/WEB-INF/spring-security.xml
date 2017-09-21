@@ -11,10 +11,15 @@
         <intercept-url pattern="/" access="hasRole('Administrateur')"/>
         <intercept-url pattern="/home" access="hasRole('Administrateur')"/>
         <intercept-url pattern="/navbar" access="hasRole('Administrateur')"/>
+
         <intercept-url pattern="/listeBonLivraison" access="hasRole('Administrateur')"/>
         <intercept-url pattern="/listeDomaine" access="hasRole('Administrateur')"/>
         <intercept-url pattern="/listeEnvironnement" access="hasRole('Administrateur')"/>
         <intercept-url pattern="/listeUtilisateur" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/listeEntite" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/listeaction" access="hasRole('Administrateur')"/>
+        <intercept-url pattern="/listeLivraison" access="hasRole('Administrateur')"/>
+
         <intercept-url pattern="/afficherBonLivraison" access="hasRole('Administrateur')"/>
         <intercept-url pattern="/afficherDomaine" access="hasRole('Administrateur')"/>
         <intercept-url pattern="/afficherEnvironnement" access="hasRole('Administrateur')"/>

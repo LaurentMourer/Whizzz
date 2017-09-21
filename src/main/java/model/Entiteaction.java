@@ -17,6 +17,15 @@ public class Entiteaction {
     private String auteur;
     private Timestamp datemodif;
     private String auteurmodif;
+    private Entitedesign entitedesign;
+
+    public Entitedesign getEntitedesign() {
+        return entitedesign;
+    }
+
+    public void setEntitedesign(Entitedesign entitedesign) {
+        this.entitedesign = entitedesign;
+    }
 
     public Integer getIdentite() {
         return identite;

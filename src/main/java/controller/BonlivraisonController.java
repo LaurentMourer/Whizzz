@@ -94,7 +94,9 @@ public class BonlivraisonController {
 
     @GetMapping("/listeEntite")
     public String listeEntite(@RequestParam("id") String id, Entitedesign entitedesign, Entitefichier entitefichier, Entitesql entitesql, Model model) {
+        long debut = System.currentTimeMillis();
         model.addAttribute("bonLivraison", bonlivraisonService.get(id));
+        logger.info(System.currentTimeMillis() - debut);
         return "listeEntite";
     }
 

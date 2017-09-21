@@ -1,8 +1,10 @@
 package model;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Entitedesign extends Entite{
+public class Entitedesign extends Entite {
     private Integer identite;
     private String domaine;
     private String nom;
@@ -16,7 +18,16 @@ public class Entitedesign extends Entite{
     private Timestamp datecreation;
     private Timestamp datemodif;
     private String report;
+    private Set<Entiteaction> entiteactions = new HashSet<Entiteaction>(0);
     private Bonlivraison bonlivraison;
+
+    public Set<Entiteaction> getEntiteactions() {
+        return entiteactions;
+    }
+
+    public void setEntiteactions(Set<Entiteaction> entiteactions) {
+        this.entiteactions = entiteactions;
+    }
 
     public Bonlivraison getBonlivraison() {
         return bonlivraison;

@@ -1,14 +1,18 @@
 package controller;
 
+import model.Entiteaction;
 import model.Entitedesign;
 import model.Entitefichier;
 import model.Entitesql;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.EntiteFichierService;
 import service.EntiteSqlService;
 import service.EntitedesignService;
@@ -65,6 +69,14 @@ public class EntiteController {
         entiteSqlService.create(entitesql);
         model.clear();
         return "redirect:/listeEntite";
+    }
+
+    @GetMapping("/listeaction")
+    public String listeAction(@RequestParam("id") Integer id, Entiteaction entiteaction, Model model) {
+        long debut = System.currentTimeMillis();
+        model.addAttribute("entitedesign", entitedesignService.get(id));
+        logger.info(System.currentTimeMillis() - debut);
+        return "listeaction";
     }
 
 

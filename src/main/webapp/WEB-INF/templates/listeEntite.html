@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>Liste Entite</title>
         <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/icon.css}"/>
-        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}"/>
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.css}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 <body>
@@ -208,6 +208,7 @@
             <th>Nom</th>
             <th>Type</th>
             <th>A livrer</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -215,6 +216,11 @@
             <td th:text="${sb.nom}">13/01/2011</td>
             <td th:text="${sb.typedesign}">13/01/2011</td>
             <td th:text="${sb.livrer}">13/01/2011</td>
+            <td>
+                <a th:href="@{/listeaction(id=${sb.identite})}" class="btn-floating">
+                    <i class="material-icons">dehaze</i>
+                </a></td>
+
         </tr>
         </tbody>
     </table>

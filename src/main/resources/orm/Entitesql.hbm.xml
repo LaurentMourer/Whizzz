@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
     <class name="model.Entitesql" table="ENTITESQL" schema="HR">
@@ -19,8 +19,8 @@
         <property name="datecreation" column="DATECREATION"/>
         <property name="datemodif" column="DATEMODIF"/>
         <property name="report" column="REPORT"/>
-        <many-to-one name="bonlivraison" class="model.Bonlivraison" fetch="select">
-            <column name="BONLIVRAISONNUMJIRA" not-null="true" />
-        </many-to-one>
+        <!--    <many-to-one name="bonlivraison" class="model.Bonlivraison" fetch="select">
+                <column name="BONLIVRAISONNUMJIRA" not-null="true" />
+            </many-to-one>-->
     </class>
 </hibernate-mapping>

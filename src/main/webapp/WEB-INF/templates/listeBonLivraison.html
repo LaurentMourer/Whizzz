@@ -2,11 +2,12 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/icon.css}"/>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
@@ -77,16 +78,21 @@
                 </div>
             </div>
         </form>
-        <div class="input-field col s2">
+        <div class="input-field col s12">
             <form action="#" th:action="@{/listeBonLivraison}" method="get">
-                <select name="date" id="date">
-                    <option th:each="date : ${dateBl}"
-                            th:value="${{date}}"
-                            th:text="${{date}}">Wireframe
-                    </option>
-                </select>
-                <label>Date</label>
-                <input type="submit">
+                <div class="input-field col s2">
+                    <select name="date" id="date">
+                        <option th:each="date : ${dateBl}"
+                                th:value="${{date}}"
+                                th:text="${{date}}">Wireframe
+                        </option>
+                    </select>
+                    <label>Date</label>
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn waves-effect waves-light" type="submit">Chercher
+                        <i class="material-icons right">send</i></button>
+                </div>
             </form>
         </div>
 

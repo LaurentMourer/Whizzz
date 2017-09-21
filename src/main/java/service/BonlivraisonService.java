@@ -10,18 +10,6 @@ public class BonlivraisonService extends AbstractService {
 
     private static final Logger logger = Logger.getLogger(BonlivraisonService.class);
 
-   /* public TreeSet<Date> getDateBl() {
-        List<Bonlivraison> listeBl = getAbstractDao().getAll();
-        TreeSet<Date> setDate = new TreeSet<Date>();
-        for (Bonlivraison bl : listeBl) {
-            setDate.add(bl.getDatecreation());
-        }
-        setDate = (TreeSet) setDate.descendingSet();
-        logger.info(setDate);
-        return setDate;
-    }
-*/
-
     public List<Date> getDateBl() {
         BonlivraisonDao bonlivraisonDao = (BonlivraisonDao) getAbstractDao();
         return bonlivraisonDao.getDate();

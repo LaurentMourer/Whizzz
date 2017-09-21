@@ -17,10 +17,10 @@
            <property name="url" value="jdbc:oracle:thin:@192.168.1.18:1521:XE"/>
            <property name="username" value="HR"/>
            <property name="password" value="HR"/>-->
-            <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-            <property name="url" value="jdbc:oracle:thin:@RDY00460.spid.log.intra.laposte.fr:8021:ORAWHIZZ"/>
-            <property name="username" value="HR"/>
-            <property name="password" value="HR"/>
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@RDY00460.spid.log.intra.laposte.fr:8021:ORAWHIZZ"/>
+        <property name="username" value="HR"/>
+        <property name="password" value="HR"/>
     </bean>
 
     <!-- Hibernate session factory -->
@@ -46,7 +46,7 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">
-                    org.hibernate.dialect.MySQL5Dialect
+                    org.hibernate.dialect.Oracle10gDialect
                 </prop>
                 <!--      <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.show_sql">true</prop>-->
@@ -87,15 +87,12 @@
           class="service.MyUtilisateurService">
         <property name="UtilisateurDao" ref="userDao"/>
     </bean>
-
     <bean id="bonLivraisonService" class="service.BonlivraisonService" autowire-candidate="true">
         <property name="abstractDao" ref="bonLivraisonDao"/>
     </bean>
-
     <bean id="domaineService" class="service.DomaineService" autowire-candidate="true">
         <property name="abstractDao" ref="domaineDao"/>
     </bean>
-
     <bean id="environnementService" class="service.EnvironnementService" autowire-candidate="true">
         <property name="abstractDao" ref="environnementDao"/>
     </bean>
@@ -110,6 +107,9 @@
     </bean>
     <bean id="entiteFichierService" class="service.EntiteFichierService" autowire-candidate="true">
         <property name="abstractDao" ref="entiteFichierDao"/>
+    </bean>
+    <bean id="livraisonService" class="service.LivraisonService" autowire-candidate="true">
+        <property name="abstractDao" ref="livraisonDao"/>
     </bean>
 
     <!-- MUST have transaction manager, using aop and aspects  -->
