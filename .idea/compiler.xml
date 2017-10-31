@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springMvcMvn" />
+        <module name="superwhizzz" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="springMvcMvn" target="1.8" />
+      <module name="superwhizzz" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
