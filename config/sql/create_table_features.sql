@@ -1,4 +1,3 @@
--- auto-generated definition
 CREATE TABLE feature
 (
   id          INT AUTO_INCREMENT
