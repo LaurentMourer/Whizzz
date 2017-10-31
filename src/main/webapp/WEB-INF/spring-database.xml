@@ -1,135 +1,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/aop
-	http://www.springframework.org/schema/aop/spring-aop.xsd
-	http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx.xsd">
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Oracle data source -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-
-        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@192.168.1.18:1521:XE"/>
-        <property name="username" value="HR"/>
-        <property name="password" value="HR"/>
-        <!--  <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-          <property name="url" value="jdbc:oracle:thin:@RDY00460.spid.log.intra.laposte.fr:8021:ORAWHIZZ"/>
-          <property name="username" value="HR"/>
-          <property name="password" value="HR"/>-->
+    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/whizzz"/>
+        <property name="username" value="hr"/>
+        <property name="password" value="hr"/>
     </bean>
 
-    <!-- Hibernate session factory -->
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mappingResources">
-            <list>
-                <value>orm/Bonlivraison.hbm.xml</value>
-                <value>orm/Domaine.hbm.xml</value>
-                <value>orm/Entiteaction.hbm.xml</value>
-                <value>orm/Entitedesign.hbm.xml</value>
-                <value>orm/Entitefichier.hbm.xml</value>
-                <value>orm/Entitesql.hbm.xml</value>
-                <value>orm/Environnement.hbm.xml</value>
-                <value>orm/Historique.hbm.xml</value>
-                <value>orm/Livraison.hbm.xml</value>
-                <value>orm/Redmine.hbm.xml</value>
-                <value>orm/Utilisateur.hbm.xml</value>
-
-            </list>
-        </property>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">
-                    org.hibernate.dialect.Oracle10gDialect
-                </prop>
-                <!--      <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.show_sql">true</prop>-->
-            </props>
-        </property>
     </bean>
 
-    <bean id="userDao" class="dao.UtilisateurDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="bonLivraisonDao" class="dao.BonlivraisonDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="domaineDao" class="dao.DomaineDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="entiteActionDao" class="dao.EntiteActionDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="entiteDesignDao" class="dao.EntitedesignDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="entiteFichierDao" class="dao.EntiteFichierDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="entiteSqlDao" class="dao.EntiteSqlDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="environnementDao" class="dao.EnvironnementDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="livraisonDao" class="dao.LivraisonDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-
-    <bean id="myUserDetailsService"
-          class="service.MyUtilisateurService">
-        <property name="UtilisateurDao" ref="userDao"/>
-    </bean>
-    <bean id="bonLivraisonService" class="service.BonlivraisonService" autowire-candidate="true">
-        <property name="abstractDao" ref="bonLivraisonDao"/>
-    </bean>
-    <bean id="domaineService" class="service.DomaineService" autowire-candidate="true">
-        <property name="abstractDao" ref="domaineDao"/>
-    </bean>
-    <bean id="environnementService" class="service.EnvironnementService" autowire-candidate="true">
-        <property name="abstractDao" ref="environnementDao"/>
-    </bean>
-    <bean id="utilisateurService" class="service.UtilisateurService" autowire-candidate="true">
-        <property name="abstractDao" ref="userDao"/>
-    </bean>
-    <bean id="entiteDesignService" class="service.EntitedesignService" autowire-candidate="true">
-        <property name="abstractDao" ref="entiteDesignDao"/>
-    </bean>
-    <bean id="entiteSqlService" class="service.EntiteSqlService" autowire-candidate="true">
-        <property name="abstractDao" ref="entiteSqlDao"/>
-    </bean>
-    <bean id="entiteFichierService" class="service.EntiteFichierService" autowire-candidate="true">
-        <property name="abstractDao" ref="entiteFichierDao"/>
-    </bean>
-    <bean id="livraisonService" class="service.LivraisonService" autowire-candidate="true">
-        <property name="abstractDao" ref="livraisonDao"/>
-    </bean>
-
-    <!-- MUST have transaction manager, using aop and aspects  -->
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"></property>
-    </bean>
-
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="get*" read-only="true"/>
-            <tx:method name="find*" read-only="true"/>
-            <tx:method name="*"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <aop:config>
-        <aop:pointcut id="userServicePointCut"
-                      expression="execution(* service.*Service.*(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut"/>
-    </aop:config>
 
 </beans>
