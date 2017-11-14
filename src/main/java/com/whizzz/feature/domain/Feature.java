@@ -1,10 +1,11 @@
 package com.whizzz.feature.domain;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.joda.time.DateTime;
 
 
-public final class Feature {
+public class Feature {
 
     private final long id;
     private final int status;
@@ -40,27 +41,16 @@ public final class Feature {
         return Objects.hashCode(id, status, description, ready, created, modified);
     }
 
-    public long getId() {
-        return id;
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("status", status)
+                .add("description", description)
+                .add("ready", ready)
+                .add("created", created)
+                .add("modified", modified)
+                .toString();
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean isReady() {
-        return ready;
-    }
-
-    public DateTime getCreated() {
-        return created;
-    }
-
-    public DateTime getModified() {
-        return modified;
-    }
 }

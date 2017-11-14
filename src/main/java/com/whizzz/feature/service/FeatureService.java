@@ -17,6 +17,6 @@ public class FeatureService {
     }
 
     public List getFeature() {
-        return featureDao.getFeatures();
+        return featureDao.selectFeatures();
     }
 }
