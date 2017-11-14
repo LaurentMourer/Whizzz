@@ -1,7 +1,6 @@
 package dao;
 
 import model.Bonlivraison;
-import org.hibernate.Query;
 
 import java.util.Date;
 import java.util.List;

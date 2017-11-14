@@ -164,9 +164,7 @@ public class Entitesql extends Entite {
         if (datecreation != null ? !datecreation.equals(entitesql.datecreation) : entitesql.datecreation != null)
             return false;
         if (datemodif != null ? !datemodif.equals(entitesql.datemodif) : entitesql.datemodif != null) return false;
-        if (report != null ? !report.equals(entitesql.report) : entitesql.report != null) return false;
-
-        return true;
+        return report != null ? report.equals(entitesql.report) : entitesql.report == null;
     }
 
     @Override

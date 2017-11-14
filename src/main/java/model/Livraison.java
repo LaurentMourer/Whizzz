@@ -42,10 +42,7 @@ public class Livraison {
             return false;
         if (datelivraison != null ? !datelivraison.equals(livraison.datelivraison) : livraison.datelivraison != null)
             return false;
-        if (etatlivraison != null ? !etatlivraison.equals(livraison.etatlivraison) : livraison.etatlivraison != null)
-            return false;
-
-        return true;
+        return etatlivraison != null ? etatlivraison.equals(livraison.etatlivraison) : livraison.etatlivraison == null;
     }
 
     @Override

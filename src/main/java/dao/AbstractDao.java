@@ -1,19 +1,14 @@
 package dao;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
+import javax.websocket.Session;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractDao<PK extends Serializable, T> {
 
     private final Class<T> persistentClass;
 
-    @SuppressWarnings("unchecked")
     public AbstractDao() {
         this.persistentClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
     }
@@ -28,11 +23,10 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 
     private SessionFactory sessionFactory;
 
-    protected Session getSession() {
+    Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 
-    @SuppressWarnings("unchecked")
     public T getByKey(PK key) {
         return (T) getSession().get(persistentClass.getName(), key);
     }
@@ -51,12 +45,11 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 
 
     public List getAll() {
-        List liste = new ArrayList();
+        List liste;
         try {
             liste = getSession().createQuery("FROM " + persistentClass.getName()).list();
         } catch (HibernateException e) {
             e.printStackTrace();
-        } finally {
         }
         return liste;
     }

@@ -24,11 +24,11 @@ public class Bonlivraison {
     private String auteurmodif;
     private String source;
     private Set<Entitedesign> entitedesigns =
-            new HashSet<Entitedesign>(0);
+            new HashSet<>(0);
     private Set<Entitefichier> entitefichiers =
-            new HashSet<Entitefichier>(0);
+            new HashSet<>(0);
     private Set<Entitesql> entitesqls =
-            new HashSet<Entitesql>(0);
+            new HashSet<>(0);
 
     public Set<Entitedesign> getEntitedesigns() {
         return entitedesigns;
@@ -161,9 +161,7 @@ public class Bonlivraison {
         if (pret != null ? !pret.equals(that.pret) : that.pret != null) return false;
         if (datemodif != null ? !datemodif.equals(that.datemodif) : that.datemodif != null) return false;
         if (auteurmodif != null ? !auteurmodif.equals(that.auteurmodif) : that.auteurmodif != null) return false;
-        if (source != null ? !source.equals(that.source) : that.source != null) return false;
-
-        return true;
+        return source != null ? source.equals(that.source) : that.source == null;
     }
 
     @Override

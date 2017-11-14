@@ -62,9 +62,7 @@ public class Redmine {
             return false;
         if (datelivraison != null ? !datelivraison.equals(redmine.datelivraison) : redmine.datelivraison != null)
             return false;
-        if (description != null ? !description.equals(redmine.description) : redmine.description != null) return false;
-
-        return true;
+        return description != null ? description.equals(redmine.description) : redmine.description == null;
     }
 
     @Override

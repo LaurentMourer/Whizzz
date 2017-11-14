@@ -69,9 +69,7 @@ public class Utilisateur {
         if (motdepasse != null ? !motdepasse.equals(that.motdepasse) : that.motdepasse != null) return false;
         if (nomuser != null ? !nomuser.equals(that.nomuser) : that.nomuser != null) return false;
         if (prenomuser != null ? !prenomuser.equals(that.prenomuser) : that.prenomuser != null) return false;
-        if (role != null ? !role.equals(that.role) : that.role != null) return false;
-
-        return true;
+        return role != null ? role.equals(that.role) : that.role == null;
     }
 
     @Override

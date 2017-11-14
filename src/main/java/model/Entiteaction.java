@@ -163,9 +163,7 @@ public class Entiteaction {
         if (datecreation != null ? !datecreation.equals(that.datecreation) : that.datecreation != null) return false;
         if (auteur != null ? !auteur.equals(that.auteur) : that.auteur != null) return false;
         if (datemodif != null ? !datemodif.equals(that.datemodif) : that.datemodif != null) return false;
-        if (auteurmodif != null ? !auteurmodif.equals(that.auteurmodif) : that.auteurmodif != null) return false;
-
-        return true;
+        return auteurmodif != null ? auteurmodif.equals(that.auteurmodif) : that.auteurmodif == null;
     }
 
     @Override

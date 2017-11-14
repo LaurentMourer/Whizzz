@@ -1,7 +1,8 @@
 package service;
 
 import controller.ErrorController;
-
+import dao.UtilisateurDao;
+import model.Utilisateur;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,8 +10,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import dao.UtilisateurDao;
-import model.Utilisateur;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,7 +19,7 @@ import java.util.Set;
 public class MyUtilisateurService implements UserDetailsService {
 
     private UtilisateurDao utilisateurDao;
-    private static Logger logger = Logger.getLogger(ErrorController.class);
+    private static final Logger logger = Logger.getLogger(ErrorController.class);
 
 
     @Override
@@ -50,16 +49,14 @@ public class MyUtilisateurService implements UserDetailsService {
 
     private List<GrantedAuthority> buildUserAuthority(Set<String> userRoles) {
 
-        Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+        Set<GrantedAuthority> setAuths = new HashSet<>();
 
         // Build user's authorities
         for (String userRole : userRoles) {
             setAuths.add(new SimpleGrantedAuthority("ROLE_" + userRole));
         }
 
-        List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
-
-        return Result;
+        return new ArrayList<GrantedAuthority>(setAuths);
     }
 
     public UtilisateurDao getUtilisateurDao() {

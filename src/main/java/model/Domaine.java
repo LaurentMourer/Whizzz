@@ -58,9 +58,7 @@ public class Domaine {
         if (nom != null ? !nom.equals(domaine.nom) : domaine.nom != null) return false;
         if (codliv != null ? !codliv.equals(domaine.codliv) : domaine.codliv != null) return false;
         if (lettreliv != null ? !lettreliv.equals(domaine.lettreliv) : domaine.lettreliv != null) return false;
-        if (description != null ? !description.equals(domaine.description) : domaine.description != null) return false;
-
-        return true;
+        return description != null ? description.equals(domaine.description) : domaine.description == null;
     }
 
     @Override

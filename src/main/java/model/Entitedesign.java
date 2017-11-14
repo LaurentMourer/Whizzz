@@ -18,7 +18,7 @@ public class Entitedesign extends Entite {
     private Timestamp datecreation;
     private Timestamp datemodif;
     private String report;
-    private Set<Entiteaction> entiteactions = new HashSet<Entiteaction>(0);
+    private Set<Entiteaction> entiteactions = new HashSet<>(0);
     private Bonlivraison bonlivraison;
 
     public Set<Entiteaction> getEntiteactions() {
@@ -163,9 +163,7 @@ public class Entitedesign extends Entite {
             return false;
         if (datecreation != null ? !datecreation.equals(that.datecreation) : that.datecreation != null) return false;
         if (datemodif != null ? !datemodif.equals(that.datemodif) : that.datemodif != null) return false;
-        if (report != null ? !report.equals(that.report) : that.report != null) return false;
-
-        return true;
+        return report != null ? report.equals(that.report) : that.report == null;
     }
 
     @Override

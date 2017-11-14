@@ -48,9 +48,7 @@ public class Environnement {
         if (nomenvironnement != null ? !nomenvironnement.equals(that.nomenvironnement) : that.nomenvironnement != null)
             return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (compilable != null ? !compilable.equals(that.compilable) : that.compilable != null) return false;
-
-        return true;
+        return compilable != null ? compilable.equals(that.compilable) : that.compilable == null;
     }
 
     @Override

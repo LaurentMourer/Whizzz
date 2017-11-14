@@ -162,9 +162,7 @@ public class Entitefichier extends Entite {
         if (datecreation != null ? !datecreation.equals(that.datecreation) : that.datecreation != null) return false;
         if (datemodif != null ? !datemodif.equals(that.datemodif) : that.datemodif != null) return false;
         if (report != null ? !report.equals(that.report) : that.report != null) return false;
-        if (aconf != null ? !aconf.equals(that.aconf) : that.aconf != null) return false;
-
-        return true;
+        return aconf != null ? aconf.equals(that.aconf) : that.aconf == null;
     }
 
     @Override

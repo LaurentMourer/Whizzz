@@ -90,10 +90,7 @@ public class Historique {
         if (dateaction != null ? !dateaction.equals(that.dateaction) : that.dateaction != null) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (bonlivraison != null ? !bonlivraison.equals(that.bonlivraison) : that.bonlivraison != null) return false;
-        if (actionmanuelle != null ? !actionmanuelle.equals(that.actionmanuelle) : that.actionmanuelle != null)
-            return false;
-
-        return true;
+        return actionmanuelle != null ? actionmanuelle.equals(that.actionmanuelle) : that.actionmanuelle == null;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class AbstractService <PK extends Serializable, T> {
         return abstractDao.getByKey(id);
     }
 
-    public List<T> getAll() {
+    public List getAll() {
         return abstractDao.getAll();
 
     }
