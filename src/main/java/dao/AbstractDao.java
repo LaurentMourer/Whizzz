@@ -45,11 +45,10 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 
 
     public List getAll() {
-        List liste;
+        final List liste = null;
         try {
             liste = getSession().createQuery("FROM " + persistentClass.getName()).list();
         } catch (HibernateException e) {
-            e.printStackTrace();
         }
         return liste;
     }

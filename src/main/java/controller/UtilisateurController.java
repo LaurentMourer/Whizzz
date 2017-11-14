@@ -17,10 +17,14 @@ import javax.validation.Valid;
 @Controller
 public class UtilisateurController {
 
-    @Autowired
-    private UtilisateurService utilisateurService;
+    private final UtilisateurService utilisateurService;
 
     private static final Logger logger = Logger.getLogger(Utilisateur.class);
+
+    @Autowired
+    public UtilisateurController(UtilisateurService utilisateurService) {
+        this.utilisateurService = utilisateurService;
+    }
 
     @GetMapping("/listeUtilisateur")
     public String listeUtilisateur(Utilisateur utilisateur, Model model) {
@@ -50,9 +54,9 @@ public class UtilisateurController {
     }
 
     @GetMapping("/afficherUtilisateur")
-    public String afficherUtilisateur(@RequestParam("id") String id, Utilisateur utilisateur, Model model) {
+    public String afficherUtilisateur(@RequestParam("id") String id, Model model) {
         logger.info(id);
-        utilisateur = (Utilisateur) utilisateurService.get(id);
+        Utilisateur utilisateur = (Utilisateur) utilisateurService.get(id);
         logger.info(utilisateur.toString());
         model.addAttribute("utilisateur", utilisateur);
         return "afficherUtilisateur";

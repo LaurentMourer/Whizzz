@@ -17,10 +17,14 @@ import javax.validation.Valid;
 @Controller
 public class EnvironnementController {
 
-    @Autowired
-    private EnvironnementService environnementService;
+    private final EnvironnementService environnementService;
 
     private static final Logger logger = Logger.getLogger(EnvironnementController.class);
+
+    @Autowired
+    public EnvironnementController(EnvironnementService environnementService) {
+        this.environnementService = environnementService;
+    }
 
     @GetMapping("/listeEnvironnement")
     public String listeEnvironnement(Environnement environnement, Model model) {
@@ -50,9 +54,9 @@ public class EnvironnementController {
     }
 
     @GetMapping("/afficherEnvironnement")
-    public String afficherEnvironnement(@RequestParam("id") String id, Environnement environnement, Model model) {
+    public String afficherEnvironnement(@RequestParam("id") String id, Model model) {
         logger.info(id);
-        environnement = (Environnement) environnementService.get(id);
+        Environnement environnement = (Environnement) environnementService.get(id);
         logger.info(environnement.toString());
         model.addAttribute("environnement", environnement);
         return "afficherEnvironnement";

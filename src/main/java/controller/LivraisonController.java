@@ -11,13 +11,14 @@ import service.LivraisonService;
 @Controller
 public class LivraisonController {
 
-    @Autowired
-    private LivraisonService livraisonService;
+    private final LivraisonService livraisonService;
 
     private static final Logger logger = Logger.getLogger(BonlivraisonController.class);
 
-    public LivraisonController() {
+    @Autowired
+    public LivraisonController(LivraisonService livraisonService) {
         super();
+        this.livraisonService = livraisonService;
     }
 
     @GetMapping("/listeLivraison")

@@ -22,17 +22,18 @@ import javax.validation.Valid;
 @Controller
 public class EntiteController {
 
-    @Autowired
-    private EntitedesignService entitedesignService;
-    @Autowired
-    private EntiteFichierService entiteFichierService;
-    @Autowired
-    private EntiteSqlService entiteSqlService;
+    private final EntitedesignService entitedesignService;
+    private final EntiteFichierService entiteFichierService;
+    private final EntiteSqlService entiteSqlService;
 
     private static final Logger logger = Logger.getLogger(EntiteController.class);
 
-    public EntiteController() {
+    @Autowired
+    public EntiteController(EntiteSqlService entiteSqlService, EntiteFichierService entiteFichierService, EntitedesignService entitedesignService) {
         super();
+        this.entiteSqlService = entiteSqlService;
+        this.entiteFichierService = entiteFichierService;
+        this.entitedesignService = entitedesignService;
     }
 
     @PostMapping(value = "/creerEntiteDesign")

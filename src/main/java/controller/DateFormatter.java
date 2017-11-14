@@ -11,11 +11,12 @@ import java.util.Locale;
 
 public class DateFormatter implements Formatter<Date> {
 
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
 
-    public DateFormatter() {
+    @Autowired
+    public DateFormatter(MessageSource messageSource) {
         super();
+        this.messageSource = messageSource;
     }
 
     public Date parse(final String text, final Locale locale) throws ParseException {

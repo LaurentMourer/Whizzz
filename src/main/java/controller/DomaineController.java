@@ -18,13 +18,14 @@ import javax.validation.Valid;
 @Controller
 public class DomaineController {
 
-    @Autowired
-    private DomaineService domaineService;
+    private final DomaineService domaineService;
 
     private static final Logger logger = Logger.getLogger(DomaineController.class);
 
-    public DomaineController() {
+    @Autowired
+    public DomaineController(DomaineService domaineService) {
         super();
+        this.domaineService = domaineService;
     }
 
     @GetMapping("/listeDomaine")
@@ -57,9 +58,9 @@ public class DomaineController {
     }
 
     @GetMapping("/afficherDomaine")
-    public String afficherDomaine(@RequestParam("id") Long id, Domaine domaine, Model model) {
+    public String afficherDomaine(@RequestParam("id") Long id, Model model) {
         logger.info(id);
-        domaine = (Domaine) domaineService.get(id);
+        Domaine domaine = (Domaine) domaineService.get(id);
         logger.info(domaine.toString());
         model.addAttribute("domaine", domaine);
         return "afficherDomaine";

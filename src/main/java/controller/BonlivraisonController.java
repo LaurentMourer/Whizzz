@@ -1,7 +1,6 @@
 package controller;
 
 import model.Bonlivraison;
-
 import model.Entitedesign;
 import model.Entitefichier;
 import model.Entitesql;
@@ -11,30 +10,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.BonlivraisonService;
 import service.DomaineService;
 import service.EnvironnementService;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class BonlivraisonController {
 
-    @Autowired
-    private BonlivraisonService bonlivraisonService;
+    private final BonlivraisonService bonlivraisonService;
 
-    @Autowired
-    private DomaineService domaineService;
+    private final DomaineService domaineService;
 
-    @Autowired
-    private EnvironnementService environnementService;
+    private final EnvironnementService environnementService;
 
     private static final Logger logger = Logger.getLogger(BonlivraisonController.class);
 
-    public BonlivraisonController() {
+    @Autowired
+    public BonlivraisonController(EnvironnementService environnementService, DomaineService domaineService, BonlivraisonService bonlivraisonService) {
         super();
+        this.environnementService = environnementService;
+        this.domaineService = domaineService;
+        this.bonlivraisonService = bonlivraisonService;
     }
 
     @GetMapping("/listeBonLivraison")
@@ -74,9 +77,9 @@ public class BonlivraisonController {
     }
 
     @GetMapping("/afficherBonLivraison")
-    public String afficherBonLivraison(@RequestParam("id") String id, Bonlivraison bonlivraison, Model model) {
+    public String afficherBonLivraison(@RequestParam("id") String id, Model model) {
         logger.info(id);
-        bonlivraison = (Bonlivraison) bonlivraisonService.get(id);
+        Bonlivraison bonlivraison = (Bonlivraison) bonlivraisonService.get(id);
         logger.info(bonlivraison.toString());
         model.addAttribute("allDomaines", domaineService.getAll());
         model.addAttribute("allSources", environnementService.getAll());

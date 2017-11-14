@@ -56,7 +56,7 @@ public class MyUtilisateurService implements UserDetailsService {
             setAuths.add(new SimpleGrantedAuthority("ROLE_" + userRole));
         }
 
-        return new ArrayList<GrantedAuthority>(setAuths);
+        return new ArrayList<>(setAuths);
     }
 
     public UtilisateurDao getUtilisateurDao() {
