@@ -9,11 +9,12 @@ import java.sql.SQLException;
 
 public class FeatureRowMapper implements RowMapper<Feature> {
 
-    public Feature mapRow(ResultSet rs, int rowNum) throws SQLException {
-        final long id = rs.getLong("ID");
+    @Override
+    public Feature mapRow(final ResultSet rs, final int rowNum) throws SQLException {
+        final Long id = rs.getLong("ID");
         final int status = rs.getInt("STATUS");
         final String description = rs.getString("DESCRIPTION");
-        final boolean ready = rs.getBoolean("READY");
+        final int ready = rs.getInt("READY");
         final DateTime created = new DateTime(rs.getTimestamp("CREATED"));
         final DateTime modified = new DateTime(rs.getTimestamp("MODIFIED"));
 
