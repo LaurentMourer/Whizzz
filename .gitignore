@@ -1,10 +1,10 @@
 
 # Idea IntelliJ
-.idea/
+.idea
 *.iml
 
 # Apache Maven
-target/
+target
 
 .DS_Store
 src/.DS_Store

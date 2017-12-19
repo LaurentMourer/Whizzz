@@ -1,1 +1,1 @@
-# Whizzz
+# whizzz
