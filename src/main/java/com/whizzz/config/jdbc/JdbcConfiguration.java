@@ -1,4 +1,4 @@
-package com.whizzz.config.spring;
+package com.whizzz.config.jdbc;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -11,17 +11,17 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource({"classpath:application.properties"})
-public class SpringDatabase {
+public class JdbcConfiguration {
 
     private final String driver;
     private final String url;
     private final String username;
     private final String password;
 
-    public SpringDatabase(@Value("${datasource.driver-class-name}") final String driver,
-                          @Value("${datasource.url}") final String url,
-                          @Value("${datasource.username}") final String username,
-                          @Value("${datasource.password}") final String password) {
+    public JdbcConfiguration(@Value("${datasource.driver-class-name}") final String driver,
+                             @Value("${datasource.url}") final String url,
+                             @Value("${datasource.username}") final String username,
+                             @Value("${datasource.password}") final String password) {
         this.driver = driver;
         this.url = url;
         this.username = username;
