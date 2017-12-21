@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.whizzz.feature.dao.mapper.FeatureBatchPreparedStatment.featureBatchPreparedStatment;
+import static com.whizzz.feature.dao.mapper.FeatureBatchPreparedStatement.FEATURE_BATCH_PREPARED_STATEMENT;
 
 @Component
 public class FeatureDao {
@@ -35,7 +35,7 @@ public class FeatureDao {
     public int[] addFeature(final List<Feature> features) {
         final String query = classPathHelper.copyClassPathResourcesToString("sql/feature/addFeature.sql");
 
-        final BatchPreparedStatementSetter batchPreparedStatementSetter = featureBatchPreparedStatment.getBatchPreparedStatementSetter(features);
+        final BatchPreparedStatementSetter batchPreparedStatementSetter = FEATURE_BATCH_PREPARED_STATEMENT.getBatchPreparedStatementSetter(features);
 
         return jdbcTemplate.batchUpdate(query, batchPreparedStatementSetter);
     }

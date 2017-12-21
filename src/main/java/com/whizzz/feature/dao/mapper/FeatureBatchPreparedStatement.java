@@ -7,11 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public final class FeatureBatchPreparedStatment {
+public final class FeatureBatchPreparedStatement {
 
-    public final static FeatureBatchPreparedStatment featureBatchPreparedStatment = new FeatureBatchPreparedStatment();
+    public final static FeatureBatchPreparedStatement FEATURE_BATCH_PREPARED_STATEMENT = new FeatureBatchPreparedStatement();
 
-    private FeatureBatchPreparedStatment() {
+    private FeatureBatchPreparedStatement() {
         // NOP
     }
 

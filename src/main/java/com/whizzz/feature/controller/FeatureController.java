@@ -1,4 +1,4 @@
-package com.whizzz.controller;
+package com.whizzz.feature.controller;
 
 import com.whizzz.feature.domain.Feature;
 import com.whizzz.feature.service.FeatureService;
