@@ -23,7 +23,7 @@ public class FeatureController {
     }
 
     @GetMapping("/features")
-    public List getFeatures() {
+    public List<Feature> getFeatures() {
         return featureService.getFeatures();
 
     }

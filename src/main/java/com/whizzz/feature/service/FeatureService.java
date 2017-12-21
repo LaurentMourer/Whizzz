@@ -17,7 +17,7 @@ public class FeatureService {
         this.featureDao = featureDao;
     }
 
-    public List getFeatures() {
+    public List<Feature> getFeatures() {
         return featureDao.getFeatures();
     }
 
