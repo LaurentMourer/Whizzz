@@ -6,13 +6,14 @@ import com.whizzz.helper.ClassPathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
-import static com.whizzz.feature.dao.mapper.FeatureBatchPreparedStatement.FEATURE_BATCH_PREPARED_STATEMENT;
-
-@Component
+@Repository
 public class FeatureDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -20,8 +21,8 @@ public class FeatureDao {
 
 
     @Autowired
-    public FeatureDao(final JdbcTemplate jdbcTemplate, final ClassPathHelper classPathHelper) {
-        this.jdbcTemplate = jdbcTemplate;
+    public FeatureDao(final DataSource dataSource, final ClassPathHelper classPathHelper) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
         this.classPathHelper = classPathHelper;
     }
 
@@ -35,9 +36,20 @@ public class FeatureDao {
     public int[] addFeature(final List<Feature> features) {
         final String query = classPathHelper.copyClassPathResourcesToString("sql/feature/addFeature.sql");
 
-        final BatchPreparedStatementSetter batchPreparedStatementSetter = FEATURE_BATCH_PREPARED_STATEMENT.getBatchPreparedStatementSetter(features);
+        return jdbcTemplate.batchUpdate(query, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(final PreparedStatement ps, final int i) throws SQLException {
+                final Feature feature = features.get(i);
+                ps.setInt(1, feature.getStatus());
+                ps.setString(2, feature.getDescription());
+                ps.setInt(3, feature.isReady());
+            }
 
-        return jdbcTemplate.batchUpdate(query, batchPreparedStatementSetter);
+            @Override
+            public int getBatchSize() {
+                return features.size();
+            }
+        });
     }
 
 

@@ -5,7 +5,6 @@ import com.whizzz.helper.ClassPathHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
@@ -20,9 +19,8 @@ public class FeatureDaoTest {
 
     private final EmbeddedDatabase db = new EmbeddedDatabaseBuilder().setType(H2).addDefaultScripts().build();
     private final ClassPathHelper classPathHelper = new ClassPathHelper();
-    private final JdbcTemplate jdbcTemplate = new JdbcTemplate(db);
 
-    private final FeatureDao featureDao = new FeatureDao(jdbcTemplate, classPathHelper);
+    private final FeatureDao featureDao = new FeatureDao(db, classPathHelper);
 
     public void setUp() throws Exception {
     }
